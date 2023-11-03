@@ -8,39 +8,41 @@
 */
 
 
+
 void Config::set_variant() {      
 
-    #if side == 0
+    if (device_side == LEFT) {
         variant.setCharAt(1,'L');
-    #elif side == 1
+    } else if (device_side == RIGHT) {
         variant.setCharAt(1,'R');
-    #endif
+    }
 
-
-    #if thumb_module == 0
+    if (thumb_module == JUST_KEYS) {
         variant.setCharAt(3,'B');
-    #elif thumb_module == 1
+    } else if (thumb_module == KEYS_AND_JOYSTICK) {
         variant.setCharAt(3,'J');
         variant.setCharAt(4,'B');
-    #elif thumb_module == 2
+    } else if (thumb_module == TRACKBALL) {
         variant.setCharAt(3,'T');
-    #endif
+    }
 
-
-    #if finger_module == 0
+    if (finger_module == ONLY_KEYS) {
         variant.setCharAt(7,'B');     
-    #elif finger_module == 1
+    } else if (finger_module == KEYS_AND_WHEEL) {
         variant.setCharAt(7,'B');
         variant.setCharAt(8,'W');
-    #endif
+    }
 
-    
-    #if additional_modules == 0
-           variant.setCharAt(11,'0');
-    #elif additional_modules == 1
+    if (additional_modules == NONE) {
+        variant.setCharAt(11,'0');
+    } else if (additional_modules == MOUSE_MODULE_ADNS_5050) {
         variant.setCharAt(11,'M');
-    #endif    
-        
+    } else if (additional_modules == GYROSCOPE_MODULE_MPU_6050) {
+        variant.setCharAt(11,'G');
+    }
+         
 }
 
 Config config;
+
+

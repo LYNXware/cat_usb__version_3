@@ -45,6 +45,10 @@ Remark:
 // module for the execution of the events
 #include "events.h"
 
+#include "MPU6050_mod.h"
+
+
+
 
 
 
@@ -53,12 +57,23 @@ Remark:
 int bRead;
 
 
+
+
+
 void setup() {
 
 
   //test buton
   pinMode(pI, INPUT_PULLUP);
+
+
+
+  // Activation of required libraries
+  Serial.begin(115200);
+  Keyboard.begin();
+  Mouse.begin();
   
+
   // setting up the cat variant for the communication with the LYNXapp
   config.set_variant();
 
@@ -73,34 +88,34 @@ void setup() {
   layouts_manager.load_layouts();
 
 
+
   // initialize the modules
   fingerModule.initialize();
   thumbModule.initialize();
   
   // included according to config.h
-#if finger_module == 1  
-  scroll_wheel.initialize();
-#endif
+  if (config.finger_module == KEYS_AND_WHEEL) {
+    scroll_wheel.initialize();
+  }
 
-#if thumb_module == 1  
-  joystick.initialize();
-#endif
-  
-#if additional_modules == 1  
-  adns5050.initialize();
-#endif
+  if (config.thumb_module == KEYS_AND_JOYSTICK) {
+    joystick.initialize();
+  }
 
-  // Activation of required libraries
-  Serial.begin(115200);
-  Keyboard.begin();
-  Mouse.begin();
+  if (config.additional_modules == MOUSE_MODULE_ADNS_5050) {
+    adns5050.initialize();
+  } 
+  else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050) {
+    mpu6050.initialize();
+  }
+
 }
 
 
 
 void loop() {
 
-
+  // Serial.println(config.variant);
   bRead = digitalRead(pI);
   if (bRead == 0) {
 
@@ -110,6 +125,8 @@ void loop() {
   }
 
 
+
+
   // checking if the LYNXapp is connected and sends new layouts
   layouts_manager.get_layouts(config.variant);
   
@@ -117,21 +134,35 @@ void loop() {
   // checking if key of thumb and fingers are triggered
   fingerModule.read_keystate();
   thumbModule.read_keystate();
-  
-  // included according to config.h 
-#if finger_module == 1
-  // check if the scroll wheel is triggered
-  scroll_wheel.read_encoder();
-#endif  
 
-#if thumb_module == 1  
-  // check if the joystick is triggered
-  joystick.read_joystick();
-#endif
+  if (config.finger_module == KEYS_AND_WHEEL) {
+    scroll_wheel.read_encoder();
+  }
+  if (config.thumb_module == KEYS_AND_JOYSTICK) {
+    joystick.read_joystick();
+  }
+    
+//   // included according to config.h 
+// #if finger_module == 1
+//   // check if the scroll wheel is triggered
+//   scroll_wheel.read_encoder();
+// #endif  
+
+// #if thumb_module == 1  
+//   // check if the joystick is triggered
+//   joystick.read_joystick();
+// #endif
   
-#if additional_modules == 1  
-  // checking if the mouse sensor is triggered
-  adns5050.read_mouse_sensor();
-#endif
+// #if additional_modules == 1  
+//   // checking if the mouse sensor is triggered
+//   adns5050.read_mouse_sensor();
+// #endif
+
+  if (config.additional_modules == MOUSE_MODULE_ADNS_5050) {
+    adns5050.read_mouse_sensor();
+  } 
+  else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050) {
+    mpu6050.readSensor();
+  }
 
 }//end loop

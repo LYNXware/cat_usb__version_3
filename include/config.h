@@ -4,24 +4,63 @@
 #include <Arduino.h>
 
 
-/* CONFIG - here you can define your cat variant */
+enum DeviceSide { 
+    LEFT = 0,
+    RIGHT = 1
+};
 
-#define side                0   // 0-(left) || 1-(right)
-#define thumb_module        1   // 0-(only keys) || 1-(keys+joystick) || 2-(trackball) 
-#define finger_module       1   // 0-(only keys) || 1-(keys+wheel) 
-#define additional_modules  0   // 0-(none) || 1-(mouse moudule)
+enum ThumbModule {
+    JUST_KEYS = 0,
+    KEYS_AND_JOYSTICK = 1,
+    TRACKBALL = 2
+};
+
+enum FingerModule {
+    ONLY_KEYS = 0,
+    KEYS_AND_WHEEL = 1
+};
+
+enum AdditionalModules {
+    NONE = 0,
+    MOUSE_MODULE_ADNS_5050 = 1,
+    GYROSCOPE_MODULE_MPU_6050 = 2
+};
+
 
 
 
 class Config {
 
-    public:
+public:
 
-        //the variant variable is used to communicate with the LYNXapp
-        String variant = "C0-000-000-000-v0.2.0";
+    /* CONFIG - here you can define your cat variant */
 
-        // the setup function is used to set the variant variable
-        void set_variant();
+    enum DeviceSide device_side = LEFT;
+    // enum DeviceSide device_side = RIGHT;
+
+    enum ThumbModule thumb_module = JUST_KEYS;
+    // enum ThumbModule thumb_module = KEYS_AND_JOYSTICK;
+    // enum ThumbModule thumb_module = TRACKBALL;
+
+    enum FingerModule finger_module = ONLY_KEYS;
+    // enum FingerModule finger_module = KEYS_AND_WHEEL;
+
+    // enum AdditionalModules additional_modules = NONE;
+    // enum AdditionalModules additional_modules = MOUSE_MODULE_ADNS_5050;
+    enum AdditionalModules additional_modules = GYROSCOPE_MODULE_MPU_6050;
+
+
+
+    //the variant variable is used to communicate with the LYNXapp
+    String variant = "C0-000-000-000_v0.3.0";
+
+    // the setup function is used to set the variant variable
+    void set_variant();
+    
+private:
+
+
+
 };
 
 // create an instance
