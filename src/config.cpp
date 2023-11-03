@@ -18,18 +18,18 @@ void Config::set_variant() {
     }
 
     if (thumb_module == JUST_KEYS) {
-        variant.setCharAt(3,'B');
+        variant.setCharAt(3,'K');
     } else if (thumb_module == KEYS_AND_JOYSTICK) {
-        variant.setCharAt(3,'J');
-        variant.setCharAt(4,'B');
+        variant.setCharAt(3,'K');
+        variant.setCharAt(4,'J');
     } else if (thumb_module == TRACKBALL) {
         variant.setCharAt(3,'T');
     }
 
     if (finger_module == ONLY_KEYS) {
-        variant.setCharAt(7,'B');     
+        variant.setCharAt(7,'K');     
     } else if (finger_module == KEYS_AND_WHEEL) {
-        variant.setCharAt(7,'B');
+        variant.setCharAt(7,'K');
         variant.setCharAt(8,'W');
     }
 

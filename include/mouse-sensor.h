@@ -18,7 +18,7 @@ class ADNS5050  {
         void initialize();
 
         // read the mouse sensor
-        void read_mouse_sensor();
+        void read();
                 
 
 

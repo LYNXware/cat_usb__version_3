@@ -52,20 +52,9 @@ Remark:
 
 
 
-//test button
-#define pI 46
-int bRead;
-
-
-
 
 
 void setup() {
-
-
-  //test buton
-  pinMode(pI, INPUT_PULLUP);
-
 
 
   // Activation of required libraries
@@ -115,16 +104,6 @@ void setup() {
 
 void loop() {
 
-  // Serial.println(config.variant);
-  bRead = digitalRead(pI);
-  if (bRead == 0) {
-
-    // catnow.test();
-    catnow.scan_for_slave();
-    catnow.send_switch_layer(66);
-  }
-
-
 
 
   // checking if the LYNXapp is connected and sends new layouts
@@ -142,27 +121,12 @@ void loop() {
     joystick.read_joystick();
   }
     
-//   // included according to config.h 
-// #if finger_module == 1
-//   // check if the scroll wheel is triggered
-//   scroll_wheel.read_encoder();
-// #endif  
-
-// #if thumb_module == 1  
-//   // check if the joystick is triggered
-//   joystick.read_joystick();
-// #endif
-  
-// #if additional_modules == 1  
-//   // checking if the mouse sensor is triggered
-//   adns5050.read_mouse_sensor();
-// #endif
 
   if (config.additional_modules == MOUSE_MODULE_ADNS_5050) {
-    adns5050.read_mouse_sensor();
+    adns5050.read();
   } 
   else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050) {
-    mpu6050.readSensor();
+    // mpu6050.readSensor();
   }
 
 }//end loop
