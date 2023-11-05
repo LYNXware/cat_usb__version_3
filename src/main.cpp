@@ -128,7 +128,7 @@ void loop() {
     adns5050.read();
   } 
   else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050) {
-    // mpu6050.readSensor();
+    mpu6050.readSensor();
   }
 
 }//end loop

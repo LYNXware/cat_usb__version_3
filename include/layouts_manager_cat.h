@@ -18,7 +18,7 @@ class Layouts_Manager {
 
         String layouts_package = "empty";
 
-        String events_bank[4][53];
+        String events_bank[4][54];
 
 
 

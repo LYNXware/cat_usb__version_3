@@ -5,53 +5,150 @@ Adafruit_MPU6050 mpu;
 
 MPU6050 mpu6050;
 
+
 // MPU6050::MPU6050() {
 void MPU6050::initialize(){
-
     mpu.begin();
-
     mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
-
     mpu.setGyroRange(MPU6050_RANGE_500_DEG);
-
     mpu.setFilterBandwidth(MPU6050_BAND_5_HZ);
+}
+
+
+
+void MPU6050::readSensor(){
+    
+    mpu.getEvent(&accel, &gyro, &temp);
+    read_accel();
+    // read_gyro();
+    delay(10);
+}
+
+
+
+
+
+void MPU6050::read_accel(){
+    accel_x = accel.acceleration.x;
+    accel_y = accel.acceleration.y;
+    // accel_z = accel.acceleration.z;
+
+    axis_val[0] = accel_y;
+    axis_val[1] = accel_x;
+
+
+    // for (uint8_t i = 0; i < 2; i++){
+    //     if (axis_val[i] > axis_val_prev[i]){
+    //         trigger_event(i,1);
+    //     }
+    //     else if (axis_val[i] < axis_val_prev[i]){
+    //         trigger_event(i,0);
+    //     }
+    // }
+
+
+    Mouse.move(accel_x*-2, accel_y*-2);
+
+
+
+
+    axis_val_prev[0] = axis_val[0];
+    axis_val_prev[1] = axis_val[1];
+}
+
+
+
+
+void MPU6050::trigger_event(uint8_t axis, uint8_t gyro_event){
+
+    uint8_t e = gyro_event_map[axis][gyro_event];
+    event.actuate(e);
+    event.deactuate(e);
+}
+
+
+void MPU6050::move_nouse(){
+
+    // Mouse.move(y_mouse, x_mouse);
 
 }
 
-// void MPU6050::readSensor(){
-    
-//     mpu.getEvent(&accel, &gyro, &temp);
-//     read_accel();
-//     // read_gyro();
-//     delay(10);
-// }
 
-// void MPU6050::read_accel(){
-//     /* Get new sensor events with the readings */
-//     // sensors_event_t accel;
-//     // mpu.getEvent(&accel, NULL, NULL);
 
-//     accel_x = accel.acceleration.x;
-//     accel_y = accel.acceleration.y;
-//     accel_z = accel.acceleration.z;
 
-//     if (accel_x != accel_x_prev){
-//         Serial.print("Accel X: ");
-//         Serial.println(accel_x);
-//     }
-//     // if (accel_y != accel_y_prev){
-//     //     Serial.print("Accel Y: ");
-//     //     Serial.println(accel_y);
-//     // }
-//     // if (accel_z != accel_z_prev){
-//     //     Serial.print("Accel Z: ");
-//     //     Serial.println(accel_z);
-//     // }
+    // if (accel_y != accel_y_prev){
+    //     if (accel_y > 0){ // forward
+    //         trigger_event(0,1);
+    //         // trigger_event(EVENT_GA_B);
+    //     }
+    //     else{ // backward
+    //         trigger_event(0,0);
+    //         // trigger_event(EVENT_GA_F);
+    //     }
+    // }
 
+
+    // if (accel_x != accel_x_prev){
+    //     if (accel_x > 0){ // left
+    //         trigger_event(1,1);
+    //         // trigger_event(EVENT_GA_L);
+    //     }
+    //     else{ // right
+    //         trigger_event(1,0);
+    //         // trigger_event(EVENT_GA_R);66
+    //     }
+    // }
+
+
+    // if (accel_y != accel_y_prev){
+    //     if (accel_y > 0){ // forward
+    //         trigger_event(0,1);
+    //         // trigger_event(EVENT_GA_B);
+    //     }
+    //     else{ // backward
+    //         trigger_event(0,0);
+    //         // trigger_event(EVENT_GA_F);
+    //     }
+    // }
+
+    // if (accel_y == 0){
+    //     gyro_state[0][0] = false;
+    //     gyro_state[0][1] = false;
+    // }
+
+    // if (accel_x != accel_x_prev){
+    //     if (accel_x > 0){ // left
+    //         trigger_event(1,1);
+    //         // trigger_event(EVENT_GA_L);
+    //     }
+    //     else{ // right
+    //         trigger_event(1,0);
+    //         // trigger_event(EVENT_GA_R);66
+    //     }
+    // }
+
+    // if (accel_x == 0){
+    //     gyro_state[1][0] = false;
+    //     gyro_state[1][1] = false;
+    // }
+
+    // if (accel_z != accel_z_prev){
+    //     Serial.print("Accel Z: ");
+    //     Serial.println(accel_z);
+    // }
 //     accel_x_prev = accel_x;
 //     accel_y_prev = accel_y;
 //     accel_z_prev = accel_z;
 // }
+
+
+
+
+
+
+
+
+
 
 // void MPU6050::read_gyro(){
 //     // /* Get new sensor events with the readings */
@@ -83,34 +180,34 @@ void MPU6050::initialize(){
 
 
 
-void MPU6050::readSensor(){
-    /* Get new sensor events with the readings */
-    // sensors_event_t accel, gyro, temp;
-    mpu.getEvent(&accel, &gyro, &temp);
+// void MPU6050::readSensor(){
+//     /* Get new sensor events with the readings */
+//     // sensors_event_t accel, gyro, temp;
+//     mpu.getEvent(&accel, &gyro, &temp);
 
-    accel_x = accel.acceleration.x;
-    accel_y = accel.acceleration.y;
-    accel_z = accel.acceleration.z;
+//     accel_x = accel.acceleration.x;
+//     accel_y = accel.acceleration.y;
+//     accel_z = accel.acceleration.z;
 
-    gyro_x = gyro.gyro.x;
-    gyro_y = gyro.gyro.y;   
-    gyro_z = gyro.gyro.z;
+//     gyro_x = gyro.gyro.x;
+//     gyro_y = gyro.gyro.y;   
+//     gyro_z = gyro.gyro.z;
     
-    Serial.print("Accel X: ");
-    Serial.print(accel_x);
-    Serial.print("  Y: ");
-    Serial.print(accel_y);
-    Serial.print("  Z: ");
-    Serial.print(accel_z);
-    Serial.print("  Gyro X: ");
-    Serial.print(gyro_x);
-    Serial.print("  Y: ");
-    Serial.print(gyro_y);
-    Serial.print("  Z: ");
-    Serial.println(gyro_z);
-    delay(100);
+//     Serial.print("Accel X: ");
+//     Serial.print(accel_x);
+//     Serial.print("  Y: ");
+//     Serial.print(accel_y);
+//     Serial.print("  Z: ");
+//     Serial.print(accel_z);
+//     Serial.print("  Gyro X: ");
+//     Serial.print(gyro_x);
+//     Serial.print("  Y: ");
+//     Serial.print(gyro_y);
+//     Serial.print("  Z: ");
+//     Serial.println(gyro_z);
+//     delay(100);
 
-}
+// }
 
 
 
