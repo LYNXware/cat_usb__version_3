@@ -5,7 +5,7 @@
 
 #include "events.h"
 #include "layer_control.h"
-#include "layouts_manager.h"
+#include "layouts_manager_cat.h"
 
 
 // code is taken form this forum: https://forum.arduino.cc/t/adns5050/67599/9

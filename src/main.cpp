@@ -24,8 +24,10 @@ Remark:
 // module to control the layers
 #include "layer_control.h"
 
+#include "usb_comms_cat.h"
+
 // module to manage the layouts
-#include "layouts_manager.h"
+#include "layouts_manager_cat.h"
 
 // module to check the finger events
 #include "finger_module.h"
@@ -74,7 +76,7 @@ void setup() {
   layer_control.initialize();
 
   // loading the layouts
-  layouts_manager.load_layouts();
+  layouts_manager.load_events_package();
 
 
 
@@ -107,7 +109,7 @@ void loop() {
 
 
   // checking if the LYNXapp is connected and sends new layouts
-  layouts_manager.get_layouts(config.variant);
+  usb_comms.get_layouts();
   
 
   // checking if key of thumb and fingers are triggered

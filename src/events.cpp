@@ -1,12 +1,11 @@
 #include "events.h"
 
-#include "layouts_manager.h"
-#include "layer_control.h"
+
 
 
 void Event::actuate(byte event){
     
-    passing_event = layouts_manager.events_array[layer_control.active_layer][event];
+    passing_event = layouts_manager.events_bank[layer_control.active_layer][event];
    
     if (passing_event[0] == mouse_function){
         mouse_press(passing_event[1]);
@@ -24,7 +23,7 @@ void Event::actuate(byte event){
 
 void Event::deactuate(byte event){
 
-    passing_event = layouts_manager.events_array[layer_control.active_layer][event];
+    passing_event = layouts_manager.events_bank[layer_control.active_layer][event];
     
     if (passing_event[0] == mouse_function){
         mouse_release(passing_event[1]);

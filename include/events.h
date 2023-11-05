@@ -6,6 +6,11 @@
 #include "USBHIDKeyboard.h"
 #include "USBHIDMouse.h"
 
+#include "layouts_manager_cat.h"
+#include "layer_control.h"
+
+
+
 // this class is for trinigering the keyboard and mouse events
 class Event {
 
