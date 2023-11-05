@@ -7,10 +7,10 @@ void Event::actuate(byte event){
     
     passing_event = layouts_manager.events_bank[layer_control.active_layer][event];
    
-    if (passing_event[0] == mouse_function){
+    if (passing_event[0] == MOUSE_FUNCTION){
         mouse_press(passing_event[1]);
     }
-    else if (passing_event[0] == cat_function){
+    else if (passing_event[0] == CAT_FUNCTION){
         layer_control.switch_layer(passing_event[1]);
     }      
     else{
@@ -25,10 +25,10 @@ void Event::deactuate(byte event){
 
     passing_event = layouts_manager.events_bank[layer_control.active_layer][event];
     
-    if (passing_event[0] == mouse_function){
+    if (passing_event[0] == MOUSE_FUNCTION){
         mouse_release(passing_event[1]);
     }
-    else if (passing_event[0] == cat_function){
+    else if (passing_event[0] == CAT_FUNCTION){
         layer_control.switch_layer_back(passing_event[1]);
     }    
     else{

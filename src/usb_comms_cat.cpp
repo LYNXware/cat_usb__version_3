@@ -3,24 +3,20 @@
 
 void USB_Comms::get_layouts() {
 
-    if (Serial.available() > 0){
+    if (Serial.available()){
 
         incoming_raw_layouts = Serial.readString();
 
-        if (comms_message == incoming_raw_layouts){
+        if (incoming_raw_layouts == comms_message){
             Serial.println(config.variant);
+            incoming_raw_layouts = "0";
         }
         else{
 
             layouts_manager.split_events_package(incoming_raw_layouts);
             layouts_manager.save_events_package(incoming_raw_layouts);
-
-            // Serial.print("usb: ");
-            // Serial.println(incoming_raw_layouts);
-
+            // incoming_raw_layouts = "1";
         }
-        // incoming_raw_layouts = "empty";
-        // Serial.println(incoming_raw_layouts);
     }
 }  
 

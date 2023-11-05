@@ -52,11 +52,16 @@ Remark:
 
 
 
-
+//test button
+#define pI 46
+int bRead;
 
 
 
 void setup() {
+
+    //test buton
+  pinMode(pI, INPUT_PULLUP);
 
 
   // Activation of required libraries
@@ -76,7 +81,7 @@ void setup() {
   layer_control.initialize();
 
   // loading the layouts
-  layouts_manager.load_events_package();
+  // layouts_manager.load_events_package();
 
 
 
@@ -104,7 +109,25 @@ void setup() {
 
 
 
+
+
 void loop() {
+
+
+
+  bRead = digitalRead(pI);
+  if (bRead == 0) {
+
+    Serial.print("usb-");
+    Serial.println(usb_comms.incoming_raw_layouts);
+
+    // Serial.println(usb_comms.transmision);
+    Serial.print("lm:");
+    Serial.println(layouts_manager.layouts_package);
+
+  }
+
+
 
 
 

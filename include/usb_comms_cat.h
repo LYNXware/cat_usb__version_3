@@ -11,15 +11,12 @@
 class USB_Comms {
 
 public:
-
+    String incoming_raw_layouts = "empty";
     void get_layouts();
-
-    // String transmision = "no transmision";
-
 
 private:
 
-    String incoming_raw_layouts = "empty";
+    // String incoming_raw_layouts = "empty";
     String comms_message = "are_you_a_cat";
 
 };

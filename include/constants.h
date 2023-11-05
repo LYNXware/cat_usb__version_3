@@ -10,6 +10,20 @@ const char DELIMITER_EVENT = 0x01;
 const char DELIMITER_LAYOUT = 0x02;
 
 
+const char MOUSE_FUNCTION = 0x10;
+const char MOUSE_LEFT_CLICK = 0xf1;
+const char MOUSE_MIDDLE_CLICK = 0xf2;
+const char MOUSE_RIGHT_CLICK = 0xf3;
+const char MOUSE_SCROLL_UP = 0xf4;
+const char MOUSE_SCROLL_DOWN = 0xf5;
+
+
+const char CAT_FUNCTION = 0x11;
+const char CAT_MAIN_SUB = 0xfb;
+const char CAT_MAJOR_MINOR = 0xfc;
+const char CAT_GYRO = 0xfd;
+
+
 // const char DELIMITER_DEVICE = 0x01;
 // 
 // 

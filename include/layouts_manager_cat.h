@@ -13,36 +13,32 @@ extern Preferences preferences;
 
 class Layouts_Manager {
 
-    public:
+public:
+
+    String layouts_package = "***";
+
+    String events_bank[4][54];
+    
+    float mouse_factor[4][2];
 
 
-        String layouts_package = "empty";
+    void split_events_package(String events_package);
 
-        String events_bank[4][54];
+    void save_events_package(String events_package);
 
-
-
-        void split_events_package(String events_package);
-
-        void save_events_package(String events_package);
-
-        void load_events_package();
+    void load_events_package();
 
 
-        float mouse_factor[4][2];
+private:
 
+    byte layer;
+    byte event_index;
+    int front_of_events;
+    int package_length;
 
+    String loaded_events_package = "loaded_events_package";
 
-
-    private:
-
-        byte layer;
-        byte event_index;
-        int front_of_events;
-
-        String loaded_events_package = "loaded_events_package";
-
-        void adjust_mouse_speed();
+    void adjust_mouse_speed();
 
 };
 

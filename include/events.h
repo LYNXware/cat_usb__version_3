@@ -6,8 +6,10 @@
 #include "USBHIDKeyboard.h"
 #include "USBHIDMouse.h"
 
+#include "constants.h"
 #include "layouts_manager_cat.h"
 #include "layer_control.h"
+
 
 
 
@@ -28,9 +30,6 @@ class Event {
 
         byte pel;
         byte k;
-
-        const char cat_function = 0xfa;
-        const char mouse_function = 0xf0;
 
         void keyboard_press(String passingEvent);
         void keyboard_release(String passingEvent);

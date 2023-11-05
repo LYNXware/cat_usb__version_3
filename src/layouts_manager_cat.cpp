@@ -1,30 +1,25 @@
 #include "layouts_manager_cat.h"
 
 
+Preferences preferences;
+
+Layouts_Manager layouts_manager;
 
 
 
 void Layouts_Manager::split_events_package(String events_package){
+    
+    //for testing
+    // layouts_package = events_package;
 
-    layouts_package = events_package;
+    layer = 0;
+    event_index = 0;
+    front_of_events = 0;
 
-    int package_length = events_package.length();
-
+    package_length = events_package.length();
 
     for (int i = 0; i < package_length; i++) {
 
-        // if (events_package.charAt(i) == LEFT_CAT){
-        //     device_side = 0;
-        //     layer = 0;
-        //     event_index = 0;
-        //     front_of_events = i+1;
-        // }
-        // if (events_package.charAt(i) == RIGHT_CAT){
-        //     device_side = 1;
-        //     layer = 0;
-        //     event_index = 0;
-        //     front_of_events = i+1;
-        // }
         if (events_package[i] == DELIMITER_LAYOUT){
             layer++;
             event_index = 0;
@@ -37,7 +32,6 @@ void Layouts_Manager::split_events_package(String events_package){
 
             front_of_events = i+1;
             event_index++;  
-
         }   
     }
 }
@@ -46,10 +40,10 @@ void Layouts_Manager::split_events_package(String events_package){
 
 void Layouts_Manager::save_events_package(String events_package)
 {
-            preferences.begin("myPrefs", false);
-            preferences.clear();
-            preferences.putString("events_package", events_package);
-            preferences.end();
+    preferences.begin("myPrefs", false);
+    preferences.clear();
+    preferences.putString("events_package", events_package);
+    preferences.end();
 }
 
 
@@ -121,6 +115,3 @@ void Layouts_Manager::load_events_package()
 
 
 
-
-Preferences preferences;
-Layouts_Manager layouts_manager;
