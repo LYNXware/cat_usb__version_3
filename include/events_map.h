@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
+#define EVENT_EMPTY 99
+
 // index finger events
 #define EVENT_I1 0
 #define EVENT_I2 1

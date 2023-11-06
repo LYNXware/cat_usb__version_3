@@ -7,6 +7,11 @@
 #include "config.h"
 
 
+#define encoder_GND 0 //a1
+#define encoder_pinA 45 //a2
+#define encoder_pinB 48 //a3
+
+
 class Scroll_Wheel {
 
 public:
@@ -16,25 +21,13 @@ public:
 
 private:
 
-    // // encoder pins
-    #define encoder_a 45    //a2
-    #define encoder_b 48    //a1
-    #define encoder_GND 0   //a1
-
-    uint8_t forward_scroll;
-    uint8_t backward_scroll;
+    uint8_t encoder_a;   
+    uint8_t encoder_b;    
 
     byte previous_state;  
     byte state;
-
-    
-
 }; 
 
 extern Scroll_Wheel scroll_wheel;
-
-
-
-
 
 #endif
