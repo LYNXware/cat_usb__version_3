@@ -1,31 +1,22 @@
 #include "layouts_manager_cat.h"
 
-
 Preferences preferences;
-
 Layouts_Manager layouts_manager;
 
 
-
-void Layouts_Manager::split_events_package(String events_package){
-    
-    //for testing
-    // layouts_package = events_package;
-
+void Layouts_Manager::split_events_package(String events_package)
+{   
     layer = 0;
     event_index = 0;
     front_of_events = 0;
-
     package_length = events_package.length();
 
     for (int i = 0; i < package_length; i++) {
-
         if (events_package[i] == DELIMITER_LAYOUT){
             layer++;
             event_index = 0;
             front_of_events = i+1;
         }
-
         if (events_package[i] == DELIMITER_EVENT){
 
             events_bank[layer][event_index] = events_package.substring(front_of_events,i);

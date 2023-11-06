@@ -10,11 +10,11 @@ void Layer_Control::initialize(){
 }
 
 
-void Layer_Control::switch_layer(char c){
-
+void Layer_Control::switch_layer(char c)
+{
     press_start = millis();
 
-    if (c == major_minor){
+    if (c == CAT_MAJOR_MINOR){
     
         if (active_layer == 0 || active_layer == 1){
             active_layer = 2;
@@ -23,7 +23,7 @@ void Layer_Control::switch_layer(char c){
             active_layer = 0; 
         }  
     }
-    else if(c == main_sub){
+    else if(c == CAT_MAIN_SUB){
     
         if (active_layer == 0){
             active_layer = 1;
@@ -47,8 +47,8 @@ void Layer_Control::switch_layer(char c){
 }
 
 
-void Layer_Control::switch_layer_back(char c){
-    
+void Layer_Control::switch_layer_back(char c)
+{
     // press_start value is set in switch_layer function
     hold_time = millis() - press_start;
 
@@ -60,7 +60,8 @@ void Layer_Control::switch_layer_back(char c){
 
 
 // function to switch layer from the outside through the cat-now module (second device)
-void Layer_Control::received_layer_switch(u8_t layer){
+void Layer_Control::received_layer_switch(u8_t layer)
+{
     active_layer = layer;
     neopixelled.layer_witch(active_layer);
 }

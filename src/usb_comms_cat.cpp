@@ -1,8 +1,8 @@
 #include "usb_comms_cat.h"
 
 
-void USB_Comms::get_layouts() {
-
+void USB_Comms::get_layouts()
+{
     if (Serial.available()){
 
         incoming_raw_layouts = Serial.readString();
@@ -19,7 +19,6 @@ void USB_Comms::get_layouts() {
         }
     }
 }  
-
 
 
 // // Preferences preferences;

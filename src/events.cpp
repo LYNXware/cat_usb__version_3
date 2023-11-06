@@ -11,7 +11,8 @@ void Event::actuate(byte event){
         mouse_press(passing_event[1]);
     }
     else if (passing_event[0] == CAT_FUNCTION){
-        layer_control.switch_layer(passing_event[1]);
+        cat_actuate(passing_event);
+        // layer_control.switch_layer(passing_event[1]);
     }      
     else{
         keyboard_press(passing_event);
@@ -29,11 +30,38 @@ void Event::deactuate(byte event){
         mouse_release(passing_event[1]);
     }
     else if (passing_event[0] == CAT_FUNCTION){
-        layer_control.switch_layer_back(passing_event[1]);
+        cat_deactuate(passing_event);
+        // layer_control.switch_layer_back(passing_event[1]);
     }    
     else{
         keyboard_release(passing_event);
     } 
+}
+
+
+
+void Event::cat_actuate(String passingEvent)
+{
+    if (passingEvent[1] == CAT_LAYER_SWITCH){
+        layer_control.switch_layer(passingEvent[2]);
+    }
+    else if (passingEvent[1] == CAT_GYRO)
+    {
+        /* code */
+    }
+    
+}
+
+
+void Event::cat_deactuate(String passingEvent)
+{
+    if (passingEvent[1] == CAT_LAYER_SWITCH){
+        layer_control.switch_layer_back(passingEvent[2]);
+    }
+    else if (passingEvent[1] == CAT_GYRO)
+    {
+        /* code */
+    }
 }
 
 

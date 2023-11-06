@@ -35,8 +35,10 @@ class Event {
         void keyboard_release(String passingEvent);
 
         void mouse_press(char m);
-        void mouse_release(char m);    
+        void mouse_release(char m);
 
+        void cat_actuate(String passingEvent);
+        void cat_deactuate(String passingEvent);
 };
 
 

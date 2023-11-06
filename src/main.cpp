@@ -81,7 +81,7 @@ void setup() {
   layer_control.initialize();
 
   // loading the layouts
-  // layouts_manager.load_events_package();
+  layouts_manager.load_events_package();
 
 
 
