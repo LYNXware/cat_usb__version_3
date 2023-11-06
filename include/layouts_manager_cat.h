@@ -5,6 +5,7 @@
 
 #include "config.h"
 #include "constants.h"
+#include "events_map.h"
 
 #include <Preferences.h>
 extern Preferences preferences;

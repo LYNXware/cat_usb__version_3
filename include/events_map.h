@@ -61,7 +61,7 @@
 #define EVENT_WM 41 // scroll wheel button
 #define EVENT_WF 42 // forward
 #define EVENT_WB 43 // backward
-#define EVENT_wS 44 // speed
+#define EVENT_WS 44 // speed
 
 // mouse 
 #define EVENT_M_NF 45 // on/off

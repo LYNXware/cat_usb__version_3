@@ -9,33 +9,24 @@
 
 class Scroll_Wheel {
 
-    public:
-    
-        void initialize();
-        void read_encoder();
+public:
 
-    private:
+    void initialize();
+    void read_encoder();
 
-        // // encoder pins
-        #define encoder_a 45    //a2
-        #define encoder_b 48    //a1
-        #define encoder_GND 0   //a1
+private:
 
-        #if side == 0
-            //left side          
-            #define forward_scroll 43
-            #define backward_scroll 41
+    // // encoder pins
+    #define encoder_a 45    //a2
+    #define encoder_b 48    //a1
+    #define encoder_GND 0   //a1
 
-        #elif side == 1  
-            //right side
-            #define forward_scroll 41
-            #define backward_scroll 43
-        #endif
+    uint8_t forward_scroll;
+    uint8_t backward_scroll;
 
-        byte previous_state;  
-        byte state;
-        // byte value = 0; 
-        // int scroll_value = 0;
+    byte previous_state;  
+    byte state;
+
     
 
 }; 

@@ -12,6 +12,16 @@ void Scroll_Wheel::initialize(){
     pinMode (encoder_b,INPUT_PULLUP);
     
     previous_state = digitalRead(encoder_a);   
+
+    if (config.device_side == LEFT) {
+        forward_scroll = EVENT_WF;
+        backward_scroll = EVENT_WB;
+    }
+    else if (config.device_side == RIGHT) {
+        forward_scroll = EVENT_WB;
+        backward_scroll = EVENT_WF;
+    }
+
 } 
 
 
