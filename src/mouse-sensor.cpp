@@ -23,13 +23,24 @@ void ADNS5050::initialize() {
 
 
 
-void ADNS5050::read() {
+void ADNS5050::read()
+{
+    if (layouts_manager.events_bank[layer_control.active_layer][EVENT_M_NF] == "1")
+    {
+        y_sensor = convert(ADNS_read(DELTA_Y_REG));
+        x_sensor = convert(ADNS_read(DELTA_X_REG));
+
+        y_mouse = y_sensor * layouts_manager.mouse_factor[layer_control.active_layer][0] * (-1); // Y horizontal 
+        x_mouse = x_sensor * layouts_manager.mouse_factor[layer_control.active_layer][1]; // X vertical
+
+        Mouse.move(y_mouse, x_mouse);
+    }
 
     //digitalWrite(RESET, LOW);
     //delay(50);
 
-    y_sensor = convert(ADNS_read(DELTA_Y_REG));
-    x_sensor = convert(ADNS_read(DELTA_X_REG));
+    // y_sensor = convert(ADNS_read(DELTA_Y_REG));
+    // x_sensor = convert(ADNS_read(DELTA_X_REG));
 
 //  Serial.print("hs ");
 //  Serial.print(y_sensor);
@@ -37,10 +48,10 @@ void ADNS5050::read() {
 //  Serial.print("    vs ");
 //  Serial.println(x_sensor);
     
-    y_mouse = y_sensor * layouts_manager.mouse_factor[layer_control.active_layer][0] * (-1); // Y horizontal 
-    x_mouse = x_sensor * layouts_manager.mouse_factor[layer_control.active_layer][1]; // X vertical
+    // y_mouse = y_sensor * layouts_manager.mouse_factor[layer_control.active_layer][0] * (-1); // Y horizontal 
+    // x_mouse = x_sensor * layouts_manager.mouse_factor[layer_control.active_layer][1]; // X vertical
 
-    Mouse.move(y_mouse, x_mouse);
+    // Mouse.move(y_mouse, x_mouse);
 
     
 //  Serial.print("h ");
