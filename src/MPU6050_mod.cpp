@@ -55,7 +55,7 @@ void MPU6050::trigger_event_with_mouse(){
             event.deactuate(gyro_event_map[i][1]);
         }
     }
-    Mouse.move(axis_val[1]*-2,  axis_val[0]*-2);
+    Mouse.move(axis_val[1]*-1,  axis_val[0]*-1);
 }
 
 
