@@ -14,50 +14,115 @@ void MPU6050::initialize(){
 
 
 
-void MPU6050::read()
+void MPU6050::read_in_loop()
 {
     if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF] == "1")
-    {
+    {   
+        // Serial.print("L: ");
+        // Serial.print(layer_control.active_layer);
+        // Serial.print("    NF: ");
+        // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF]);
+
+        // Serial.print("    m: ");
+        // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_M]);
+
+        // Serial.print("    f: ");
+        // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_F]);
+        // Serial.print("    b: ");
+        // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_B]);
+        // Serial.print("    l: ");
+        // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_L]);
+        // Serial.print("    r: ");
+        // Serial.println(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_R]);
+        read();
 
     }
 
 }
 
-void MPU6050::read_on_trigger()
-{
 
-}
-
-
-
-
-
-void MPU6050::readSensor(){
-    
+void MPU6050::read()
+{  
     mpu.getEvent(&accel, &gyro, &temp);
-    read_accel();
-    // read_gyro();
-    delay(10);
-}
-
-
-
-
-
-void MPU6050::read_accel(){
-    // accel_x = accel.acceleration.x;
-    // accel_y = accel.acceleration.y;
-    // accel_z = accel.acceleration.z;
 
     axis_val[0] = accel.acceleration.y;
     axis_val[1] = accel.acceleration.x;
 
+    if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_M] == "1")
+    {
+        trigger_event_with_mouse();
+    }
+    else
+    {
+        trigger_event();
+    }
+}
+
+
+
+void MPU6050::trigger_event_with_mouse(){
+
+    Serial.print("y: ");
+    Serial.print(axis_val[0]);
+    Serial.print("  x: ");
+    Serial.println(axis_val[1]);
+
+    for (uint8_t i = 0; i < 2; i++)
+    {
+        if (axis_val[i] > 0)
+        {
+            gyro_state[i][1] = true;
+            event.actuate(gyro_event_map[i][1]);
+
+
+
+            // Serial.print("i: ");
+            // Serial.print(i);
+            // Serial.print(" 1    GEM: ");
+            // Serial.println(gyro_event_map[i][1]);
+        }
+        else if (axis_val[i] < 0)
+        {
+            gyro_state[i][0] = true;
+            event.actuate(gyro_event_map[i][0]);
+
+            // Serial.print("i: ");
+            // Serial.print(i);
+            // Serial.print(" 0    GEM: ");
+            // Serial.println(gyro_event_map[i][0]);
+        }
+        else
+        {
+            gyro_state[i][0] = false;
+            gyro_state[i][1] = false;
+            event.deactuate(gyro_event_map[i][0]);
+            event.deactuate(gyro_event_map[i][1]);
+
+            // Serial.println("000");
+        }
+    }
+    Mouse.move(axis_val[1]*-2,  axis_val[0]*-2);
+}
+
+
+
+
+
+
+void MPU6050::trigger_event(){
+    // accel_x = accel.acceleration.x;
+    // accel_y = accel.acceleration.y;
+    // accel_z = accel.acceleration.z;
+
+    // axis_val[0] = accel.acceleration.y;
+    // axis_val[1] = accel.acceleration.x;
+
     for (uint8_t i = 0; i < 2; i++){
         if (axis_val[i] > axis_val_prev[i]){
-            trigger_event(i,1);
+            // trigger_event(i,1);
         }
         else if (axis_val[i] < axis_val_prev[i]){
-            trigger_event(i,0);
+            // trigger_event(i,0);
         }
     }
 
@@ -68,19 +133,18 @@ void MPU6050::read_accel(){
 
 
 
-void MPU6050::trigger_event(uint8_t axis, uint8_t gyro_event){
-
-    uint8_t e = gyro_event_map[axis][gyro_event];
-    event.actuate(e);
-    event.deactuate(e);
-}
 
 
-void MPU6050::move_nouse()
-{
-    Mouse.move(accel_x*-2, accel_y*-2);
-    // Mouse.move(y_mouse, x_mouse);
-}
+
+// // if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_M] == "1")
+
+
+
+// void MPU6050::trigger_event_with_mouse(uint8_t axis, uint8_t gyro_event)
+// {
+//     Mouse.move(accel_x*-2, accel_y*-2);
+//     // Mouse.move(y_mouse, x_mouse);
+// }
 
 
 

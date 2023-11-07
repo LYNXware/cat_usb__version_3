@@ -20,26 +20,24 @@ class MPU6050 {
 public:
     void initialize();
 
-    void read();
-    void read_on_trigger();
+    void read_in_loop();
 
-    void readSensor();
-    void read_accel();
-    void read_gyro();
-    // void readAccelerometer(int16_t* ax, int16_t* ay, int16_t* az);
-    // void readGyroscope(int16_t* gx, int16_t* gy, int16_t* gz);
+    void read();
+
+
+
 private:
     sensors_event_t accel, gyro, temp;
     
-    int8_t accel_x, accel_y, accel_z;
-    int8_t gyro_x, gyro_y, gyro_z;
+    // int8_t accel_x, accel_y, accel_z;
+    // int8_t gyro_x, gyro_y, gyro_z;
 
-    int8_t accel_x_prev, accel_y_prev, accel_z_prev;
-    int8_t gyro_x_prev, gyro_y_prev, gyro_z_prev;
+    // int8_t accel_x_prev, accel_y_prev, accel_z_prev;
+    // int8_t gyro_x_prev, gyro_y_prev, gyro_z_prev;
 
 
-    uint8_t axis_val[2];
-    uint8_t axis_val_prev[2];
+    int8_t axis_val[2];
+    int8_t axis_val_prev[2];
 
 
 
@@ -50,12 +48,16 @@ private:
                             {false, false}};
 
 
-    void trigger_event(uint8_t axis, uint8_t gyro_event);
+    void trigger_event();
+    void trigger_event_with_mouse();
+
+    // void trigger_event(uint8_t axis, uint8_t gyro_event);
+    // void trigger_event_with_mouse(uint8_t axis, uint8_t gyro_event);
 
     void actuate_event(uint8_t axis, uint8_t gyro_event);
     void deactuate_event(uint8_t axis, uint8_t gyro_event);
 
-    void move_nouse();
+    
 
 };
 

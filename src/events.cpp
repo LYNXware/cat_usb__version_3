@@ -50,7 +50,7 @@ void Event::cat_actuate(String passingEvent)
     }
     else if (passingEvent[1] == CAT_GYRO)
     {
-        mpu6050.read_on_trigger();
+        mpu6050.read();
     }
     
 }

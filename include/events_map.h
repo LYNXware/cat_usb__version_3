@@ -73,7 +73,7 @@
 
 // GA-module (gyroscope accelerometer module)
 #define EVENT_GA_NF 48 // on/off
-#define EVENT_GA_KT 49 // Trigger on Key
+#define EVENT_GA_M 49 // include mouse control
 #define EVENT_GA_F 50 // forward
 #define EVENT_GA_B 51 // backward
 #define EVENT_GA_L 52 // left
