@@ -14,33 +14,6 @@ void MPU6050::initialize(){
 
 
 
-void MPU6050::read_in_loop()
-{
-    if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF] == "1")
-    {   
-        // Serial.print("L: ");
-        // Serial.print(layer_control.active_layer);
-        // Serial.print("    NF: ");
-        // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF]);
-
-        // Serial.print("    m: ");
-        // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_M]);
-
-        // Serial.print("    f: ");
-        // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_F]);
-        // Serial.print("    b: ");
-        // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_B]);
-        // Serial.print("    l: ");
-        // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_L]);
-        // Serial.print("    r: ");
-        // Serial.println(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_R]);
-        read();
-
-    }
-
-}
-
-
 void MPU6050::read()
 {  
     mpu.getEvent(&accel, &gyro, &temp);
@@ -62,34 +35,17 @@ void MPU6050::read()
 
 void MPU6050::trigger_event_with_mouse(){
 
-    Serial.print("y: ");
-    Serial.print(axis_val[0]);
-    Serial.print("  x: ");
-    Serial.println(axis_val[1]);
-
     for (uint8_t i = 0; i < 2; i++)
     {
         if (axis_val[i] > 0)
         {
             gyro_state[i][1] = true;
             event.actuate(gyro_event_map[i][1]);
-
-
-
-            // Serial.print("i: ");
-            // Serial.print(i);
-            // Serial.print(" 1    GEM: ");
-            // Serial.println(gyro_event_map[i][1]);
         }
         else if (axis_val[i] < 0)
         {
             gyro_state[i][0] = true;
             event.actuate(gyro_event_map[i][0]);
-
-            // Serial.print("i: ");
-            // Serial.print(i);
-            // Serial.print(" 0    GEM: ");
-            // Serial.println(gyro_event_map[i][0]);
         }
         else
         {
@@ -97,8 +53,6 @@ void MPU6050::trigger_event_with_mouse(){
             gyro_state[i][1] = false;
             event.deactuate(gyro_event_map[i][0]);
             event.deactuate(gyro_event_map[i][1]);
-
-            // Serial.println("000");
         }
     }
     Mouse.move(axis_val[1]*-2,  axis_val[0]*-2);

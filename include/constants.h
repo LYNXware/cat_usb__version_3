@@ -41,9 +41,4 @@ const char CAT_NONE = 0xf0;
 // const char CAT_EVENT_MAIN_SUB = 0x10;
 // const char CAT_EVENT_MAJOR_MINOR = 0x11;
 
-
-
-
-
-
 #endif

@@ -147,11 +147,14 @@ void loop() {
   }
     
 
-  if (config.additional_modules == MOUSE_MODULE_ADNS_5050) {
+  if (config.additional_modules == MOUSE_MODULE_ADNS_5050)
+  {
     adns5050.read();
   } 
-  else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050) {
-    mpu6050.read_in_loop();
+  else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050
+  && layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF] == "1")
+  {
+    mpu6050.read();
   }
 
 }//end loop

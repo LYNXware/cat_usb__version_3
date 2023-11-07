@@ -20,7 +20,7 @@ class MPU6050 {
 public:
     void initialize();
 
-    void read_in_loop();
+    // void read_in_loop();
 
     void read();
 

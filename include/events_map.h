@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-#define EVENT_EMPTY 99
+
 
 // index finger events
 #define EVENT_I1 0
@@ -73,10 +73,13 @@
 
 // GA-module (gyroscope accelerometer module)
 #define EVENT_GA_NF 48 // on/off
-#define EVENT_GA_M 49 // include mouse control
-#define EVENT_GA_F 50 // forward
-#define EVENT_GA_B 51 // backward
-#define EVENT_GA_L 52 // left
-#define EVENT_GA_R 53 // right  
+#define EVENT_GA_M 49 // include mouse fuctionality
+#define EVENT_GA_MSF 50 // mouse speed factor
+#define EVENT_GA_F 51 // forward
+#define EVENT_GA_B 52 // backward
+#define EVENT_GA_L 53 // left
+#define EVENT_GA_R 54 // right  
+
+#define EVENT_EMPTY 99 // empty event
 
 #endif
