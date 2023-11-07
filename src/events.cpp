@@ -1,10 +1,13 @@
 #include "events.h"
 
+Event event;
+
+USBHIDKeyboard Keyboard;
+USBHIDMouse Mouse;
 
 
-
-void Event::actuate(byte event){
-    
+void Event::actuate(byte event)
+{    
     passing_event = layouts_manager.events_bank[layer_control.active_layer][event];
    
     if (passing_event[0] == MOUSE_FUNCTION){
@@ -22,8 +25,8 @@ void Event::actuate(byte event){
 
 
 
-void Event::deactuate(byte event){
-
+void Event::deactuate(byte event)
+{
     passing_event = layouts_manager.events_bank[layer_control.active_layer][event];
     
     if (passing_event[0] == MOUSE_FUNCTION){
@@ -47,7 +50,7 @@ void Event::cat_actuate(String passingEvent)
     }
     else if (passingEvent[1] == CAT_GYRO)
     {
-        /* code */
+        mpu6050.read_on_trigger();
     }
     
 }
@@ -237,9 +240,6 @@ void Event::mouse_release(char m){
 }
 
 
-Event event;
 
-USBHIDKeyboard Keyboard;
-USBHIDMouse Mouse;
 
 

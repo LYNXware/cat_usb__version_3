@@ -16,7 +16,7 @@ class Layouts_Manager {
 
 public:
 
-    String layouts_package = "***";
+    // String layouts_package = "***";
 
     String events_bank[4][54];
     

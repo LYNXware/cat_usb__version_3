@@ -123,7 +123,7 @@ void loop() {
 
     // Serial.println(usb_comms.transmision);
     Serial.print("lm:");
-    Serial.println(layouts_manager.layouts_package);
+    // Serial.println(layouts_manager.layouts_package);
 
   }
 
@@ -151,7 +151,7 @@ void loop() {
     adns5050.read();
   } 
   else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050) {
-    mpu6050.readSensor();
+    mpu6050.read();
   }
 
 }//end loop

@@ -1,18 +1,34 @@
 #include "MPU6050_mod.h"
 
-
 Adafruit_MPU6050 mpu;
 
 MPU6050 mpu6050;
 
 
-// MPU6050::MPU6050() {
 void MPU6050::initialize(){
     mpu.begin();
     mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
     mpu.setGyroRange(MPU6050_RANGE_500_DEG);
     mpu.setFilterBandwidth(MPU6050_BAND_5_HZ);
 }
+
+
+
+void MPU6050::read()
+{
+    if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF] == "1")
+    {
+
+    }
+
+}
+
+void MPU6050::read_on_trigger()
+{
+
+}
+
+
 
 
 
@@ -29,28 +45,21 @@ void MPU6050::readSensor(){
 
 
 void MPU6050::read_accel(){
-    accel_x = accel.acceleration.x;
-    accel_y = accel.acceleration.y;
+    // accel_x = accel.acceleration.x;
+    // accel_y = accel.acceleration.y;
     // accel_z = accel.acceleration.z;
 
-    axis_val[0] = accel_y;
-    axis_val[1] = accel_x;
+    axis_val[0] = accel.acceleration.y;
+    axis_val[1] = accel.acceleration.x;
 
-
-    // for (uint8_t i = 0; i < 2; i++){
-    //     if (axis_val[i] > axis_val_prev[i]){
-    //         trigger_event(i,1);
-    //     }
-    //     else if (axis_val[i] < axis_val_prev[i]){
-    //         trigger_event(i,0);
-    //     }
-    // }
-
-
-    Mouse.move(accel_x*-2, accel_y*-2);
-
-
-
+    for (uint8_t i = 0; i < 2; i++){
+        if (axis_val[i] > axis_val_prev[i]){
+            trigger_event(i,1);
+        }
+        else if (axis_val[i] < axis_val_prev[i]){
+            trigger_event(i,0);
+        }
+    }
 
     axis_val_prev[0] = axis_val[0];
     axis_val_prev[1] = axis_val[1];
@@ -67,10 +76,10 @@ void MPU6050::trigger_event(uint8_t axis, uint8_t gyro_event){
 }
 
 
-void MPU6050::move_nouse(){
-
+void MPU6050::move_nouse()
+{
+    Mouse.move(accel_x*-2, accel_y*-2);
     // Mouse.move(y_mouse, x_mouse);
-
 }
 
 

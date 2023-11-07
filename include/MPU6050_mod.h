@@ -18,8 +18,11 @@ extern Adafruit_MPU6050 mpu;
 
 class MPU6050 {
 public:
-    // MPU6050();
     void initialize();
+
+    void read();
+    void read_on_trigger();
+
     void readSensor();
     void read_accel();
     void read_gyro();
@@ -27,7 +30,6 @@ public:
     // void readGyroscope(int16_t* gx, int16_t* gy, int16_t* gz);
 private:
     sensors_event_t accel, gyro, temp;
-    
     
     int8_t accel_x, accel_y, accel_z;
     int8_t gyro_x, gyro_y, gyro_z;
@@ -49,6 +51,9 @@ private:
 
 
     void trigger_event(uint8_t axis, uint8_t gyro_event);
+
+    void actuate_event(uint8_t axis, uint8_t gyro_event);
+    void deactuate_event(uint8_t axis, uint8_t gyro_event);
 
     void move_nouse();
 

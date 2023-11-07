@@ -23,6 +23,7 @@ const char CAT_LAYER_SWITCH = 0xfa;
 const char CAT_MAIN_SUB = 0xfb;
 const char CAT_MAJOR_MINOR = 0xfc;
 const char CAT_GYRO = 0xfd;
+const char CAT_NONE = 0xf0;
 
 
 // const char DELIMITER_DEVICE = 0x01;

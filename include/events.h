@@ -9,7 +9,7 @@
 #include "constants.h"
 #include "layouts_manager_cat.h"
 #include "layer_control.h"
-
+#include "MPU6050_mod.h"
 
 
 
