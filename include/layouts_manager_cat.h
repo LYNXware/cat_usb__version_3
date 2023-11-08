@@ -18,7 +18,7 @@ public:
 
     // String layouts_package = "***";
 
-    String events_bank[4][54];
+    String events_bank[4][EVENTS_COUNT];
     
     float mouse_factor[4][2];
 

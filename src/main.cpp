@@ -118,12 +118,14 @@ void loop() {
   bRead = digitalRead(pI);
   if (bRead == 0) {
 
-    Serial.print("usb-");
-    Serial.println(usb_comms.incoming_raw_layouts);
+    
 
-    // Serial.println(usb_comms.transmision);
-    Serial.print("lm:");
-    // Serial.println(layouts_manager.layouts_package);
+    // Serial.print("usb-");
+    // Serial.println(usb_comms.incoming_raw_layouts);
+
+    // // Serial.println(usb_comms.transmision);
+    // Serial.print("lm:");
+    // // Serial.println(layouts_manager.layouts_package);
 
   }
 
@@ -155,6 +157,10 @@ void loop() {
   && layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF] == "1")
   {
     mpu6050.read();
+    Serial.println("mpu6050");
   }
+
+  // Serial.print("loop   gnf:");
+  // Serial.println(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF]);
 
 }//end loop

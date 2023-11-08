@@ -21,6 +21,9 @@ void MPU6050::read()
     axis_val[0] = accel.acceleration.y;
     axis_val[1] = accel.acceleration.x;
 
+    Serial.print("gnf:");
+    Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF]);
+
     if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_M] == "1")
     {
         trigger_event_with_mouse();
@@ -31,7 +34,29 @@ void MPU6050::read()
     }
 }
 
+void MPU6050::trigger_event(){
 
+    for (uint8_t i = 0; i < 2; i++)
+    {
+        if (axis_val[i] > 0)
+        {
+            gyro_state[i][1] = true;
+            event.actuate(gyro_event_map[i][1]);
+        }
+        else if (axis_val[i] < 0)
+        {
+            gyro_state[i][0] = true;
+            event.actuate(gyro_event_map[i][0]);
+        }
+        else
+        {
+            gyro_state[i][0] = false;
+            gyro_state[i][1] = false;
+            event.deactuate(gyro_event_map[i][0]);
+            event.deactuate(gyro_event_map[i][1]);
+        }
+    }
+}
 
 void MPU6050::trigger_event_with_mouse(){
 
@@ -63,26 +88,26 @@ void MPU6050::trigger_event_with_mouse(){
 
 
 
-void MPU6050::trigger_event(){
-    // accel_x = accel.acceleration.x;
-    // accel_y = accel.acceleration.y;
-    // accel_z = accel.acceleration.z;
+// void MPU6050::trigger_event(){
+//     // accel_x = accel.acceleration.x;
+//     // accel_y = accel.acceleration.y;
+//     // accel_z = accel.acceleration.z;
 
-    // axis_val[0] = accel.acceleration.y;
-    // axis_val[1] = accel.acceleration.x;
+//     // axis_val[0] = accel.acceleration.y;
+//     // axis_val[1] = accel.acceleration.x;
 
-    for (uint8_t i = 0; i < 2; i++){
-        if (axis_val[i] > axis_val_prev[i]){
-            // trigger_event(i,1);
-        }
-        else if (axis_val[i] < axis_val_prev[i]){
-            // trigger_event(i,0);
-        }
-    }
+//     for (uint8_t i = 0; i < 2; i++){
+//         if (axis_val[i] > axis_val_prev[i]){
+//             // trigger_event(i,1);
+//         }
+//         else if (axis_val[i] < axis_val_prev[i]){
+//             // trigger_event(i,0);
+//         }
+//     }
 
-    axis_val_prev[0] = axis_val[0];
-    axis_val_prev[1] = axis_val[1];
-}
+//     axis_val_prev[0] = axis_val[0];
+//     axis_val_prev[1] = axis_val[1];
+// }
 
 
 
