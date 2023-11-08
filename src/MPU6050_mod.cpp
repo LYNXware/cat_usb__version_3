@@ -21,8 +21,8 @@ void MPU6050::read()
     axis_val[0] = accel.acceleration.y;
     axis_val[1] = accel.acceleration.x;
 
-    Serial.print("gnf:");
-    Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF]);
+    // Serial.print("gnf:");
+    // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF]);
 
     if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_M] == "1")
     {

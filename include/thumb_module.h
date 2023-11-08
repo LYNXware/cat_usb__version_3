@@ -2,6 +2,8 @@
 #define THUMB_MODULE_H
 
 #include <Arduino.h>
+
+#include "PINs.h"
 #include "events.h"
 #include "config.h"
 #include "events_map.h"
@@ -21,10 +23,19 @@ public:
 private:
 
     //declaring inputs and outputs tor thumb buttons moudule
-    const byte outPin[3] = {6, 5, 4};         
-    const byte inPin[4] = {7, 15, 16, 17};    
+    // const byte outPin[3] = {6, 5, 4};         
+    // const byte inPin[4] = {7, 15, 16, 17};    
     const byte outPin_count = 3;
     const byte inPin_count = 4;
+
+    const byte outPin[3] = {PIN_THUMB_MOD_OUTPUT_3, 
+                            PIN_THUMB_MOD_OUTPUT_2,
+                            PIN_THUMB_MOD_OUTPUT_1};
+                                     
+    const byte inPin[4] = {PIN_THUMB_MOD_INPUT_1,
+                            PIN_THUMB_MOD_INPUT_2,
+                            PIN_THUMB_MOD_INPUT_3,
+                            PIN_THUMB_MOD_INPUT_4};   
 
     // internal variables
     byte to;

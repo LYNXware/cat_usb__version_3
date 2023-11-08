@@ -157,7 +157,7 @@ void loop() {
   && layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF] == "1")
   {
     mpu6050.read();
-    Serial.println("mpu6050");
+    // Serial.println("mpu6050");
   }
 
   // Serial.print("loop   gnf:");

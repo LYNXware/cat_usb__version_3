@@ -57,11 +57,17 @@ void Thumb_Module::read_keystate()
             {
                 event.actuate(t_index);
                 t_state[ti][to] = 1;
+
+                Serial.print("a.: ");
+                Serial.println(t_index);
             }
             else if (digitalRead(inPin[ti]) == HIGH && t_state[ti][to] == 1)
             {
                 event.deactuate(t_index);
                 t_state[ti][to] = 0;
+
+                Serial.print("d.: ");
+                Serial.println(t_index);
             }
             else {
                 // do nothing

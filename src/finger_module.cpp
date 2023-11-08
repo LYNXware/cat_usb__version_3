@@ -38,7 +38,7 @@ void Finger_Module::read_keystate()
                 Serial.print("ac.: ");
                 Serial.println(f_index);   
             }
-            if (digitalRead(inPin_f[fi]) == HIGH && f_state[fi][fo] == 1)
+            else if (digitalRead(inPin_f[fi]) == HIGH && f_state[fi][fo] == 1)
             {                
                 event.deactuate(f_index); 
                 f_state[fi][fo] = 0;
@@ -46,6 +46,18 @@ void Finger_Module::read_keystate()
                 Serial.print("de.: "); 
                 Serial.println(f_index);
             }
+
+
+        }      
+         //setting the Outputpin back to HIGH state
+        digitalWrite(outPin_f[fo],HIGH);             
+    }
+}
+
+// creating an instance of the Finger_Module class
+Finger_Module fingerModule;
+
+
 
             // if (digitalRead(inPin_f[fi]) == LOW && f_state[fi][fo] == 0){
                 
@@ -66,11 +78,3 @@ void Finger_Module::read_keystate()
             //     // }
             //     // do nothing   
             // }
-        }      
-         //setting the Outputpin back to HIGH state
-        digitalWrite(outPin_f[fo],HIGH);             
-    }
-}
-
-// creating an instance of the Finger_Module class
-Finger_Module fingerModule;

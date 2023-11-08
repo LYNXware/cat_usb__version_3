@@ -22,7 +22,7 @@ private:
 
     const byte outPin_f_count = 6;
     const byte inPin_f_count = 4;
-    
+
     const uint8_t outPin_f[6] = {PIN_FINGER_MOD_OUTPUT_1,
                                 PIN_FINGER_MOD_OUTPUT_2,
                                 PIN_FINGER_MOD_OUTPUT_3,
@@ -35,21 +35,9 @@ private:
                                 PIN_FINGER_MOD_INPUT_3,
                                 PIN_FINGER_MOD_INPUT_4};
 
-    // declaring inputs and outputs for finger buttons moudule
-    //                         // u1  u2  u3  u4  u5  u6
-    // const byte outPin_f[6] = {1, 2, 42, 41, 40, 39}; //declaring output pins for finger buttons moudule
 
-    //                         // j1  j2  j3  j4    
-    // const byte inPin_f[4] = {38, 37, 36, 35};  //declaring inputs pins for finger buttons moudule   
-
-
-
-    // internal variables
-    // byte fo;
-    // byte fi;
     uint8_t f_index;
     
-
     // events map of the finger module keys
                             // u1  u2  u3  u4  u5  u6     
     const byte f_map[4][6] = {{ EVENT_I7, EVENT_I4, EVENT_M4, EVENT_R4, EVENT_P3, EVENT_P5},   // j1      // button layout for left side
@@ -70,3 +58,16 @@ private:
 extern Finger_Module fingerModule;
 
 #endif
+
+    // declaring inputs and outputs for finger buttons moudule
+    //                         // u1  u2  u3  u4  u5  u6
+    // const byte outPin_f[6] = {1, 2, 42, 41, 40, 39}; //declaring output pins for finger buttons moudule
+
+    //                         // j1  j2  j3  j4    
+    // const byte inPin_f[4] = {38, 37, 36, 35};  //declaring inputs pins for finger buttons moudule   
+
+
+
+    // internal variables
+    // byte fo;
+    // byte fi;
