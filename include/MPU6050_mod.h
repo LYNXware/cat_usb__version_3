@@ -62,8 +62,10 @@ private:
 
 
 
-    void absolute ();
-    void relative (); 
+    void absolute_event_trigger();
+    void absolute_event_trigger_with_mouse();
+    void relative_event_trigger();
+    void relative_event_trigger_with_mouse();
 
 };
 

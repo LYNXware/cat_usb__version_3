@@ -1,5 +1,8 @@
 #include "usb_comms_cat.h"
 
+// initialize the USB_Comms class
+USB_Comms usb_comms;
+
 
 void USB_Comms::get_layouts()
 {
@@ -7,9 +10,15 @@ void USB_Comms::get_layouts()
 
         incoming_raw_layouts = Serial.readString();
 
-        if (incoming_raw_layouts == comms_message){
+        if (incoming_raw_layouts == comms_message)
+        {
+            // sent the variant to LYNXapp
             Serial.println(config.variant);
-            incoming_raw_layouts = "0";
+
+            while (Serial.available())
+            {
+                delay(10);
+            }
         }
         else{
 
@@ -17,9 +26,8 @@ void USB_Comms::get_layouts()
             layouts_manager.save_events_package(incoming_raw_layouts);
             // incoming_raw_layouts = "1";
         }
+        incoming_raw_layouts = "";
     }
 }  
 
 
-// // Preferences preferences;
-USB_Comms usb_comms;
