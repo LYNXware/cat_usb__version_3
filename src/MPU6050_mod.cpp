@@ -27,10 +27,12 @@ void MPU6050::read()
     if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_M] == "1")
     {
         trigger_event_with_mouse();
+        Serial.println("trigger_event_with_mouse");
     }
     else
     {
         trigger_event();
+        Serial.println("trigger_event");
     }
 }
 

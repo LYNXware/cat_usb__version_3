@@ -24,6 +24,8 @@ public:
 
     void read();
 
+    bool trigger_state = false;
+
 
 
 private:
@@ -47,6 +49,7 @@ private:
     bool gyro_state[2][2] = {{false, false}, 
                             {false, false}};
 
+    
 
     void trigger_event();
     void trigger_event_with_mouse();
@@ -57,7 +60,10 @@ private:
     void actuate_event(uint8_t axis, uint8_t gyro_event);
     void deactuate_event(uint8_t axis, uint8_t gyro_event);
 
-    
+
+
+    void absolute ();
+    void relative (); 
 
 };
 

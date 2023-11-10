@@ -51,7 +51,9 @@ void Event::cat_actuate(String passingEvent)
             layer_control.switch_layer(passingEvent[2]);
             break;
         case CAT_GYRO:
-            mpu6050.read();
+            // mpu6050.read();
+            mpu6050.trigger_state = true;
+            // Serial.print("CAT_GYRO: ");
             break;
         case CAT_NONE:
             // Serial.println("act. CAT_NONE");
@@ -70,6 +72,7 @@ void Event::cat_deactuate(String passingEvent)
             layer_control.switch_layer_back(passingEvent[2]);
             break;
         case CAT_GYRO:
+            mpu6050.trigger_state = false;
             break;
         case CAT_NONE:
             // Serial.println("deact. CAT_NONE");
