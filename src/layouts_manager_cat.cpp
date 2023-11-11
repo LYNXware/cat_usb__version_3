@@ -54,6 +54,8 @@ void Layouts_Manager::adjust_mouse_speed()
     for (uint8_t m =0; m < 4; m++){
     mouse_factor[m][0] = pow((float(events_bank[m][EVENT_MH][0])/100), 2);  // horizontal mouse factor
     mouse_factor[m][1] = pow((float(events_bank[m][EVENT_MV][0])/100), 2);  // vertical mouse factor
+    // wheel_speed[m] = int(events_bank[m][EVENT_WS][0]);
+    wheel_speed[m] = atoi(events_bank[m][EVENT_WS].c_str());
     }
 }
 

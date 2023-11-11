@@ -25,6 +25,8 @@ void ADNS5050::initialize() {
 
 void ADNS5050::read()
 {
+    // Serial.print("AL: ");
+
     if (layouts_manager.events_bank[layer_control.active_layer][EVENT_M_NF] == "1")
     {
         y_sensor = convert(ADNS_read(DELTA_Y_REG));

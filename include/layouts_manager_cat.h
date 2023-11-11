@@ -20,7 +20,10 @@ public:
 
     String events_bank[4][EVENTS_COUNT];
     
+    // mouse_factor[layer][mouse_horizontal / mouse_vertical / wheel_speed]
     float mouse_factor[4][2];
+
+    uint8_t wheel_speed[4];
 
 
     void split_events_package(String events_package);

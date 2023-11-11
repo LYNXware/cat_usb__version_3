@@ -217,11 +217,32 @@ void Event::mouse_press(char m){
             break;   
         
         case 0xf4:
-            Mouse.move(0, 0, 1);
+            Mouse.move(0, 0, 1 * layouts_manager.wheel_speed[layer_control.active_layer]);
+
+            Serial.print("int: ");
+            Serial.print(layouts_manager.wheel_speed[0]);
+            Serial.print(" ");
+            Serial.print(layouts_manager.wheel_speed[1]);
+            Serial.print(" ");
+            Serial.print(layouts_manager.wheel_speed[2]);
+            Serial.print(" ");
+            Serial.println(layouts_manager.wheel_speed[3]);
+
+            Serial.print("str: ");
+            Serial.print(layouts_manager.events_bank[0][44]);
+            Serial.print(" ");  
+            Serial.print(layouts_manager.events_bank[1][44]);
+            Serial.print(" ");
+            Serial.print(layouts_manager.events_bank[2][44]);
+            Serial.print(" ");
+            Serial.println(layouts_manager.events_bank[3][44]);
+
+
             break;
         
         case 0xf5:
-            Mouse.move(0, 0, -1);
+            Mouse.move(0, 0, -1 * layouts_manager.wheel_speed[layer_control.active_layer]);
+            Serial.println(layouts_manager.wheel_speed[layer_control.active_layer]);
             break;    
         
         default:
