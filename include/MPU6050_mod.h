@@ -41,7 +41,8 @@ private:
     int8_t axis_val[2];
     int8_t axis_val_prev[2];
 
-
+    uint8_t treshold_absolute = 1;
+    uint8_t treshold_relative = 2;
 
     uint8_t gyro_event_map[2][2] = {{EVENT_GA_F, EVENT_GA_B}, 
                                     {EVENT_GA_R, EVENT_GA_L}};
@@ -49,7 +50,15 @@ private:
     bool gyro_state[2][2] = {{false, false}, 
                             {false, false}};
 
-    
+
+    void absolute_event_trigger();
+    void absolute_event_trigger_with_mouse();
+    void relative_event_trigger();
+    void relative_event_trigger_with_mouse();
+
+    void absolute();
+    void relative();
+
 
     void trigger_event();
     void trigger_event_with_mouse();
@@ -57,15 +66,12 @@ private:
     // void trigger_event(uint8_t axis, uint8_t gyro_event);
     // void trigger_event_with_mouse(uint8_t axis, uint8_t gyro_event);
 
-    void actuate_event(uint8_t axis, uint8_t gyro_event);
-    void deactuate_event(uint8_t axis, uint8_t gyro_event);
+    void actuate_event(uint8_t axis, uint8_t side);
+    void deactuate_event(uint8_t axis, uint8_t side);
 
 
 
-    void absolute_event_trigger();
-    void absolute_event_trigger_with_mouse();
-    void relative_event_trigger();
-    void relative_event_trigger_with_mouse();
+
 
 };
 

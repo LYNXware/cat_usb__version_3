@@ -19,10 +19,13 @@ const char MOUSE_SCROLL_DOWN = 0xf5;
 
 
 const char CAT_FUNCTION = 0x1a;
+
 const char CAT_LAYER_SWITCH = 0xfa;
-const char CAT_MAIN_SUB = 0xfb;
-const char CAT_MAJOR_MINOR = 0xfc;
+const char CAT_MAJOR_MINOR = 0xfb;
+const char CAT_MAIN_SUB = 0xfc;
+
 const char CAT_GYRO = 0xfd;
+
 const char CAT_NONE = 0xf0;
 
 

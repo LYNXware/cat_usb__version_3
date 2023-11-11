@@ -1,11 +1,13 @@
 #include "MPU6050_mod.h"
 
+
 Adafruit_MPU6050 mpu;
 
 MPU6050 mpu6050;
 
 
-void MPU6050::initialize(){
+void MPU6050::initialize()
+{
     mpu.begin();
     mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
     mpu.setGyroRange(MPU6050_RANGE_500_DEG);
@@ -61,67 +63,96 @@ void MPU6050::read()
 }
 
 
+
+
+
 void MPU6050::absolute_event_trigger()
 { 
-    Serial.println("absolute_event_trigger");
+    // Serial.println("absolute_event_trigger");
+    absolute();
 }
 
 
 void MPU6050::absolute_event_trigger_with_mouse()
 {
-    Serial.println("absolute_event_trigger_with_mouse");
+    // Serial.println("absolute_event_trigger_with_mouse");
 }
 
 
 void MPU6050::relative_event_trigger()
 {
-    Serial.println("relative_event_trigger");
+    // Serial.println("relative_event_trigger");
+    relative();
 }
 
 
 void MPU6050::relative_event_trigger_with_mouse()
 {
-    Serial.println("relative_event_trigger_with_mouse");
+    // Serial.println("relative_event_trigger_with_mouse");
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-void MPU6050::trigger_event(){
-
+void MPU6050::absolute()
+{
     for (uint8_t i = 0; i < 2; i++)
-    {
-        if (axis_val[i] > 0)
+    {   
+        if (axis_val[i] > treshold_absolute)
         {
-            gyro_state[i][1] = true;
-            event.actuate(gyro_event_map[i][1]);
-        }
-        else if (axis_val[i] < 0)
-        {
-            gyro_state[i][0] = true;
-            event.actuate(gyro_event_map[i][0]);
+            actuate_event(i,1);
+            Serial.println(axis_val[i]);
         }
         else
         {
-            gyro_state[i][0] = false;
-            gyro_state[i][1] = false;
-            event.deactuate(gyro_event_map[i][0]);
-            event.deactuate(gyro_event_map[i][1]);
+            deactuate_event(i,1);
+        }
+        
+        if (axis_val[i] < -treshold_absolute)
+        {
+            actuate_event(i,0);
+            Serial.println(axis_val[i]);
+        }
+        else
+        {
+            deactuate_event(i,0);
         }
     }
 }
+
+
+void MPU6050::relative()
+{
+    for (uint8_t i = 0; i < 2; i++)
+    {
+        if (axis_val[i] > axis_val_prev[i] )
+        {
+            actuate_event(i,1);
+            Serial.print(axis_val[i]);
+            Serial.print("  ");
+            Serial.println(axis_val_prev[i]);
+        }
+        else if (axis_val[i] < axis_val_prev[i])
+        {
+            actuate_event(i,0);
+            Serial.print(axis_val[i]);
+            Serial.print("  ");
+            Serial.println(axis_val_prev[i]);
+        }
+        else
+        {
+            deactuate_event(i,0);
+            deactuate_event(i,1);
+        }
+    }
+    axis_val_prev[0] = axis_val[0];
+    axis_val_prev[1] = axis_val[1];
+}
+
+
+
+
+
 
 void MPU6050::trigger_event_with_mouse(){
 
@@ -154,7 +185,35 @@ void MPU6050::trigger_event_with_mouse(){
 
 
 
+void MPU6050::actuate_event(byte axis, byte side){
 
+  if (!gyro_state[axis][side]) 
+  {
+    event.actuate(gyro_event_map[axis][side]);
+    gyro_state[axis][side] = true;
+
+    // Serial.print("press--");
+    // Serial.print(axis);
+    // Serial.print("-");
+    // Serial.println(axis_event);
+
+  }
+}
+
+
+
+void MPU6050::deactuate_event(byte axis, byte side){
+
+  if (gyro_state[axis][side]) 
+  {
+    event.deactuate(gyro_event_map[axis][side]);
+    gyro_state[axis][side] = false;
+    // Serial.print("rr--");
+    // Serial.print(axis);
+    // Serial.print("-");
+    // Serial.println(axis_event);
+  }
+}
 
 
 
