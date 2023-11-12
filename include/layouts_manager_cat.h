@@ -24,6 +24,10 @@ public:
     float mouse_factor[4][2];
 
     uint8_t wheel_speed[4];
+    uint8_t gyro_mouse_speed[4];
+
+    int8_t gyro_mouse_x_direction[4];
+    int8_t gyro_mouse_y_direction[4];
 
 
     void split_events_package(String events_package);
@@ -42,7 +46,7 @@ private:
 
     String loaded_events_package = "loaded_events_package";
 
-    void adjust_mouse_speed();
+    void convert_to_numvers();
 
 };
 

@@ -76,22 +76,36 @@ void MPU6050::absolute_event_trigger()
 void MPU6050::absolute_event_trigger_with_mouse()
 {
     // Serial.println("absolute_event_trigger_with_mouse");
+    absolute();
+    move_mouse(axis_val[1], axis_val[0]);
 }
 
 
 void MPU6050::relative_event_trigger()
 {
     // Serial.println("relative_event_trigger");
+    calc_relative_axis_val();
     relative();
 }
 
 
 void MPU6050::relative_event_trigger_with_mouse()
-{
+{   
     // Serial.println("relative_event_trigger_with_mouse");
+    calc_relative_axis_val();
+    relative();
+    move_mouse(axis_val_relative[1], axis_val_relative[0]);
 }
 
 
+void MPU6050::calc_relative_axis_val()
+{
+    for (uint8_t i = 0; i < 2; i++)
+    {
+        axis_val_relative[i] = axis_val[i] - axis_val_prev[i];
+        axis_val_prev[i] = axis_val[i];
+    }
+}
 
 
 void MPU6050::absolute()
@@ -101,7 +115,7 @@ void MPU6050::absolute()
         if (axis_val[i] > treshold_absolute)
         {
             actuate_event(i,1);
-            Serial.println(axis_val[i]);
+            // Serial.println(axis_val[i]);
         }
         else
         {
@@ -111,7 +125,7 @@ void MPU6050::absolute()
         if (axis_val[i] < -treshold_absolute)
         {
             actuate_event(i,0);
-            Serial.println(axis_val[i]);
+            // Serial.println(axis_val[i]);
         }
         else
         {
@@ -125,19 +139,21 @@ void MPU6050::relative()
 {
     for (uint8_t i = 0; i < 2; i++)
     {
-        if (axis_val[i] > axis_val_prev[i] )
+        // if (axis_val[i] > axis_val_prev[i] )
+        if (axis_val_relative[i] > 0)
         {
             actuate_event(i,1);
-            Serial.print(axis_val[i]);
-            Serial.print("  ");
-            Serial.println(axis_val_prev[i]);
+            // Serial.print(axis_val[i]);
+            // Serial.print("  ");
+            // Serial.println(axis_val_prev[i]);
         }
-        else if (axis_val[i] < axis_val_prev[i])
+        // else if (axis_val[i] < axis_val_prev[i])
+        else if (axis_val_relative[i] < 0)
         {
             actuate_event(i,0);
-            Serial.print(axis_val[i]);
-            Serial.print("  ");
-            Serial.println(axis_val_prev[i]);
+            // Serial.print(axis_val[i]);
+            // Serial.print("  ");
+            // Serial.println(axis_val_prev[i]);
         }
         else
         {
@@ -145,43 +161,9 @@ void MPU6050::relative()
             deactuate_event(i,1);
         }
     }
-    axis_val_prev[0] = axis_val[0];
-    axis_val_prev[1] = axis_val[1];
+    // axis_val_prev[0] = axis_val[0];
+    // axis_val_prev[1] = axis_val[1];
 }
-
-
-
-
-
-
-void MPU6050::trigger_event_with_mouse(){
-
-    for (uint8_t i = 0; i < 2; i++)
-    {
-        if (axis_val[i] > 0)
-        {
-            gyro_state[i][1] = true;
-            event.actuate(gyro_event_map[i][1]);
-        }
-        else if (axis_val[i] < 0)
-        {
-            gyro_state[i][0] = true;
-            event.actuate(gyro_event_map[i][0]);
-        }
-        else
-        {
-            gyro_state[i][0] = false;
-            gyro_state[i][1] = false;
-            event.deactuate(gyro_event_map[i][0]);
-            event.deactuate(gyro_event_map[i][1]);
-        }
-    }
-    Mouse.move(axis_val[1]*-1,  axis_val[0]*-1);
-}
-
-
-
-
 
 
 
@@ -214,6 +196,73 @@ void MPU6050::deactuate_event(byte axis, byte side){
     // Serial.println(axis_event);
   }
 }
+
+
+void MPU6050::move_mouse(int8_t x, int8_t y)
+{
+    Serial.print("x1: ");
+    Serial.print(x);
+    Serial.print("  y1: ");
+    Serial.print(y);
+
+    y = y * layouts_manager.gyro_mouse_speed[layer_control.active_layer] * layouts_manager.gyro_mouse_y_direction[layer_control.active_layer];
+    x = x * layouts_manager.gyro_mouse_speed[layer_control.active_layer] * layouts_manager.gyro_mouse_x_direction[layer_control.active_layer];
+
+    Mouse.move(x, y);
+
+    Serial.print("  x2: ");
+    Serial.print(x);
+    Serial.print("  y2: ");
+    Serial.print(y);
+
+    
+
+    Serial.print("  xf: ");
+    Serial.print(layouts_manager.gyro_mouse_x_direction[layer_control.active_layer]);
+    Serial.print("  yf: ");
+    Serial.print(layouts_manager.gyro_mouse_y_direction[layer_control.active_layer]);
+    Serial.print("  s: ");
+    Serial.print(layouts_manager.gyro_mouse_speed[layer_control.active_layer]);
+
+    Serial.println();
+    delay(100);
+}
+
+
+
+
+// void MPU6050::trigger_event_with_mouse(){
+
+//     for (uint8_t i = 0; i < 2; i++)
+//     {
+//         if (axis_val[i] > 0)
+//         {
+//             gyro_state[i][1] = true;
+//             event.actuate(gyro_event_map[i][1]);
+//         }
+//         else if (axis_val[i] < 0)
+//         {
+//             gyro_state[i][0] = true;
+//             event.actuate(gyro_event_map[i][0]);
+//         }
+//         else
+//         {
+//             gyro_state[i][0] = false;
+//             gyro_state[i][1] = false;
+//             event.deactuate(gyro_event_map[i][0]);
+//             event.deactuate(gyro_event_map[i][1]);
+//         }
+//     }
+//     Mouse.move(axis_val[1]*-1,  axis_val[0]*-1);
+// }
+
+
+
+
+
+
+
+
 
 
 

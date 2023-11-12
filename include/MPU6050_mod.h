@@ -40,6 +40,7 @@ private:
 
     int8_t axis_val[2];
     int8_t axis_val_prev[2];
+    int8_t axis_val_relative[2];
 
     uint8_t treshold_absolute = 1;
     uint8_t treshold_relative = 2;
@@ -56,12 +57,14 @@ private:
     void relative_event_trigger();
     void relative_event_trigger_with_mouse();
 
+    void calc_relative_axis_val();
+
     void absolute();
     void relative();
 
 
-    void trigger_event();
-    void trigger_event_with_mouse();
+    // void trigger_event();
+    // void trigger_event_with_mouse();
 
     // void trigger_event(uint8_t axis, uint8_t gyro_event);
     // void trigger_event_with_mouse(uint8_t axis, uint8_t gyro_event);
@@ -69,7 +72,7 @@ private:
     void actuate_event(uint8_t axis, uint8_t side);
     void deactuate_event(uint8_t axis, uint8_t side);
 
-
+    void move_mouse(int8_t x, int8_t y);
 
 
 

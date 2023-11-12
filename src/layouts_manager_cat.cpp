@@ -25,7 +25,7 @@ void Layouts_Manager::split_events_package(String events_package)
             event_index++;  
         }   
     }
-    adjust_mouse_speed();
+    convert_to_numvers();
 }
 
 
@@ -49,13 +49,29 @@ void Layouts_Manager::load_events_package()
 
 
 
-void Layouts_Manager::adjust_mouse_speed()
+void Layouts_Manager::convert_to_numvers()
 {
-    for (uint8_t m =0; m < 4; m++){
-    mouse_factor[m][0] = pow((float(events_bank[m][EVENT_MH][0])/100), 2);  // horizontal mouse factor
-    mouse_factor[m][1] = pow((float(events_bank[m][EVENT_MV][0])/100), 2);  // vertical mouse factor
-    // wheel_speed[m] = int(events_bank[m][EVENT_WS][0]);
-    wheel_speed[m] = atoi(events_bank[m][EVENT_WS].c_str());
+    for (uint8_t m =0; m < 4; m++)
+    {
+        mouse_factor[m][0] = pow((float(events_bank[m][EVENT_MH][0])/100), 2);  // horizontal mouse factor
+        mouse_factor[m][1] = pow((float(events_bank[m][EVENT_MV][0])/100), 2);  // vertical mouse factor
+        // wheel_speed[m] = int(events_bank[m][EVENT_WS][0]);
+        wheel_speed[m] = atoi(events_bank[m][EVENT_WS].c_str());
+        gyro_mouse_speed[m] = atoi(events_bank[m][EVENT_GA_MSF].c_str());
+
+        if (events_bank[m][EVENT_GA_MXD][0] == '0'){
+            gyro_mouse_x_direction[m] = -1;
+        }
+        else{
+            gyro_mouse_x_direction[m] = 1;
+        }
+
+        if (events_bank[m][EVENT_GA_MYD][0] == '0'){
+            gyro_mouse_y_direction[m] = -1;
+        }
+        else{
+            gyro_mouse_y_direction[m] = 1;
+        }
     }
 }
 
