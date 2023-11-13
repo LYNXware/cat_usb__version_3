@@ -24,8 +24,9 @@ public:
     float mouse_factor[4][2];
 
     uint8_t wheel_speed[4];
-    uint8_t gyro_mouse_speed[4];
 
+    uint8_t gyro_dead_zone[4];
+    uint8_t gyro_mouse_speed[4];
     int8_t gyro_mouse_x_direction[4];
     int8_t gyro_mouse_y_direction[4];
 

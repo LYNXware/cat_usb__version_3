@@ -57,6 +57,8 @@ void Layouts_Manager::convert_to_numbers()
         mouse_factor[m][1] = pow((float(events_bank[m][EVENT_MV][0])/100), 2);  // vertical mouse factor
         // wheel_speed[m] = int(events_bank[m][EVENT_WS][0]);
         wheel_speed[m] = atoi(events_bank[m][EVENT_WS].c_str());
+        
+        gyro_dead_zone[m] = atoi(events_bank[m][EVENT_GA_DZ].c_str());
         gyro_mouse_speed[m] = atoi(events_bank[m][EVENT_GA_MSF].c_str());
 
         if (events_bank[m][EVENT_GA_MXD][0] == '0'){

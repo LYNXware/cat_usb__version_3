@@ -74,19 +74,20 @@
 // GA-module (gyroscope accelerometer module)
 #define EVENT_GA_NF  48 // on/off
 #define EVENT_GA_AR  49 // absolute/relative
+#define EVENT_GA_DZ  50 // dead zone
 
-#define EVENT_GA_M 50 // include mouse fuctionality
-#define EVENT_GA_MSF 51 // mouse speed factor
-#define EVENT_GA_MXD 52 // mouse x flip direction
-#define EVENT_GA_MYD 53 // mouse y flip direction
+#define EVENT_GA_M 51 // include mouse fuctionality
+#define EVENT_GA_MSF 52 // mouse speed factor
+#define EVENT_GA_MXD 53 // mouse x flip direction
+#define EVENT_GA_MYD 54 // mouse y flip direction
 
-#define EVENT_GA_F 54 // forward
-#define EVENT_GA_B 55 // backward
-#define EVENT_GA_L 56 // left
-#define EVENT_GA_R 57 // right  
+#define EVENT_GA_F 55 // forward
+#define EVENT_GA_B 56 // backward
+#define EVENT_GA_L 57 // left
+#define EVENT_GA_R 58 // right  
 
-#define EVENTS_COUNT 58 // number of events
 
+#define EVENTS_COUNT 59 // number of events
 #define EVENT_EMPTY 99 // empty event
 
 #endif
