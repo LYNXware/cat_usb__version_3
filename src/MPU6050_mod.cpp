@@ -205,8 +205,11 @@ void MPU6050::move_mouse(int8_t x, int8_t y)
     Serial.print("  y1: ");
     Serial.print(y);
 
-    y = y * layouts_manager.gyro_mouse_speed[layer_control.active_layer] * layouts_manager.gyro_mouse_y_direction[layer_control.active_layer];
-    x = x * layouts_manager.gyro_mouse_speed[layer_control.active_layer] * layouts_manager.gyro_mouse_x_direction[layer_control.active_layer];
+    y = y * layouts_manager.gyro_mouse_speed[layer_control.active_layer]
+         * layouts_manager.gyro_mouse_y_direction[layer_control.active_layer];
+         
+    x = x * layouts_manager.gyro_mouse_speed[layer_control.active_layer] 
+        * layouts_manager.gyro_mouse_x_direction[layer_control.active_layer];
 
     Mouse.move(x, y);
 

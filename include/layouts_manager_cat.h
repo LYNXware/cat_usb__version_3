@@ -46,7 +46,7 @@ private:
 
     String loaded_events_package = "loaded_events_package";
 
-    void convert_to_numvers();
+    void convert_to_numbers();
 
 };
 

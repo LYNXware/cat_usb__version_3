@@ -25,7 +25,7 @@ void Layouts_Manager::split_events_package(String events_package)
             event_index++;  
         }   
     }
-    convert_to_numvers();
+    convert_to_numbers();
 }
 
 
@@ -49,7 +49,7 @@ void Layouts_Manager::load_events_package()
 
 
 
-void Layouts_Manager::convert_to_numvers()
+void Layouts_Manager::convert_to_numbers()
 {
     for (uint8_t m =0; m < 4; m++)
     {
