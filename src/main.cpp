@@ -118,6 +118,8 @@ void loop() {
   bRead = digitalRead(pI);
   if (bRead == 0) {
 
+    Serial.print("DZ: ");
+    Serial.println(layouts_manager.gyro_dead_zone[layer_control.active_layer]);
     
 
     // Serial.print("usb-");
