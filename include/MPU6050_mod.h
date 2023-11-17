@@ -20,23 +20,13 @@ class MPU6050 {
 public:
     void initialize();
 
-    // void read_in_loop();
-
     void read();
 
     bool trigger_state = false;
 
 
-
 private:
     sensors_event_t accel, gyro, temp;
-    
-    // int8_t accel_x, accel_y, accel_z;
-    // int8_t gyro_x, gyro_y, gyro_z;
-
-    // int8_t accel_x_prev, accel_y_prev, accel_z_prev;
-    // int8_t gyro_x_prev, gyro_y_prev, gyro_z_prev;
-
 
     int8_t axis_val[2];
     int8_t axis_val_prev[2];
@@ -63,11 +53,6 @@ private:
     void relative();
 
 
-    // void trigger_event();
-    // void trigger_event_with_mouse();
-
-    // void trigger_event(uint8_t axis, uint8_t gyro_event);
-    // void trigger_event_with_mouse(uint8_t axis, uint8_t gyro_event);
 
     void actuate_event(uint8_t axis, uint8_t side);
     void deactuate_event(uint8_t axis, uint8_t side);
@@ -81,3 +66,15 @@ private:
 extern MPU6050 mpu6050;
 
 #endif
+
+    
+    // int8_t accel_x, accel_y, accel_z;
+    // int8_t gyro_x, gyro_y, gyro_z;
+
+    // int8_t accel_x_prev, accel_y_prev, accel_z_prev;
+    // int8_t gyro_x_prev, gyro_y_prev, gyro_z_prev;
+        // void trigger_event();
+    // void trigger_event_with_mouse();
+
+    // void trigger_event(uint8_t axis, uint8_t gyro_event);
+    // void trigger_event_with_mouse(uint8_t axis, uint8_t gyro_event);
