@@ -28,12 +28,11 @@ enum AdditionalModules {
 
 
 
-
 class Config {
 
 public:
 
-    /* CONFIG - here you can define your cat variant */
+    /* CONFIG - here you can define your cat variant */ 
 
     // enum DeviceSide device_side = LEFT;
     enum DeviceSide device_side = RIGHT;
