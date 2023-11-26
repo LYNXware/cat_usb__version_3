@@ -1,5 +1,7 @@
 #include "config.h"
 
+Config config;
+
 /*
     Variant Legend:
     C  0  -  0  0  0  -  0  0  0  -  0  0  0 - v  0 . 0 . 0
@@ -41,8 +43,24 @@ void Config::set_variant() {
         variant.setCharAt(11,'G');
     }
          
-}
+}   
 
-Config config;
+
+void Config::print_kayboard_scan_codes()    
+{
+    if (fingerModule.trigger_print_scan_codes() == true) {
+
+        for (int i = 0; i <= 194; i++) {
+            Keyboard.write('0' + (i / 1000 % 10)); // Write thousands place
+            Keyboard.write('0' + (i / 100 % 10)); // Write hundreds place
+            Keyboard.write('0' + (i / 10 % 10));  // Write tens place
+            Keyboard.write('0' + (i % 10));       // Write ones place
+            Keyboard.write('\t'); // Tab for separation
+            Keyboard.write(i);    // Write the corresponding character
+            Keyboard.write('\n'); // Newline for separation
+            delay(50); // Delay between each character (adjust as needed)
+        }   
+    }
+}
 
 

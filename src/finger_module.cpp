@@ -1,5 +1,7 @@
 #include "finger_module.h"
 
+// creating an instance of the Finger_Module class
+Finger_Module fingerModule;
 
 
 void Finger_Module::initialize(){
@@ -54,8 +56,16 @@ void Finger_Module::read_keystate()
     }
 }
 
-// creating an instance of the Finger_Module class
-Finger_Module fingerModule;
+bool Finger_Module::trigger_print_scan_codes()
+{
+    read_keystate();
+    if (f_state[0][1] == 1) 
+    {  return true; }
+    else 
+    {  return false; }
+}
+
+
 
 
 

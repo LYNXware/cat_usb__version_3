@@ -18,6 +18,8 @@ public:
     // read the state of the finger module events
     void read_keystate();
 
+    bool trigger_print_scan_codes();
+
 private:
 
     const byte outPin_f_count = 6;

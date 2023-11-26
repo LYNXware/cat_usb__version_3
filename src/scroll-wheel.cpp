@@ -3,16 +3,16 @@
 
 void Scroll_Wheel::initialize()
 {
-    pinMode(encoder_GND,OUTPUT);
-    digitalWrite(encoder_GND,LOW);
+    pinMode(PIN_FINGER_MOD_WHEEL_GND,OUTPUT);
+    digitalWrite(PIN_FINGER_MOD_WHEEL_GND,LOW);
 
     if (config.device_side == LEFT) {
-        encoder_a = encoder_pinB;
-        encoder_b = encoder_pinA; 
+        encoder_a = PIN_FINGER_MOD_WHEEL_B;
+        encoder_b = PIN_FINGER_MOD_WHEEL_A; 
     }
     else if (config.device_side == RIGHT) {
-        encoder_a = encoder_pinA; 
-        encoder_b = encoder_pinB; 
+        encoder_a = PIN_FINGER_MOD_WHEEL_A; 
+        encoder_b = PIN_FINGER_MOD_WHEEL_B; 
     }
 
     pinMode (encoder_a,INPUT_PULLUP);

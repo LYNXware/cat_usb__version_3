@@ -2,12 +2,13 @@
 #define NEOPIXEL_LED_H
 
 #include <Arduino.h>
-
 #include <Adafruit_NeoPixel.h>
 
-#define LED_PIN    44
+#include "PINs.h"
+
 #define LED_COUNT 2
-#define LED_power 43
+// #define LED_PIN    44
+// #define LED_power 43
 
 // creating an instance of the Adafruit_NeoPixel class
 extern Adafruit_NeoPixel strip_layer_switch;

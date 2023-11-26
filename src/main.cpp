@@ -62,13 +62,19 @@ void setup() {
 
 
   // Activation of required libraries
-  Serial.begin(115200);
+  // Serial.begin(115200);
   Keyboard.begin();
   Mouse.begin();
+
+    // initialize the modules
+  fingerModule.initialize();
+  thumbModule.initialize();
   
 
   // setting up the cat variant for the communication with the LYNXapp
   config.set_variant();
+  config.print_kayboard_scan_codes();
+
 
   neopixelled.initialize();
 
@@ -82,10 +88,7 @@ void setup() {
 
 
 
-  // initialize the modules
-  fingerModule.initialize();
-  thumbModule.initialize();
-  
+
   // included according to config.h
   if (config.finger_module == KEYS_AND_WHEEL) {
     scroll_wheel.initialize();
@@ -110,15 +113,8 @@ void setup() {
 
 void loop() {
 
-
-
   bRead = digitalRead(pI);
   if (bRead == 0) {
-
-    Serial.print("DZ: ");
-    Serial.println(layouts_manager.gyro_dead_zone[layer_control.active_layer]);
-    
-
     // Serial.print("usb-");
     // Serial.println(usb_comms.incoming_raw_layouts);
 
@@ -163,4 +159,4 @@ void loop() {
   // Serial.print("loop   gnf:");
   // Serial.println(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF]);
 
-}//end loop
+}

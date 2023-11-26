@@ -8,12 +8,12 @@ Joystick joystick;
 void Joystick::initialize(){
 
     // pin to read the joystick values
-    pinMode(pin_jx, INPUT_PULLUP);     
-    pinMode(pin_jy, INPUT_PULLUP);  
+    pinMode(PIN_THUMB_MOD_JOYSTICK_X, INPUT_PULLUP);     
+    pinMode(PIN_THUMB_MOD_JOYSTICK_Y, INPUT_PULLUP);  
     
     // power supply for the joystick
-    pinMode(pin_v,OUTPUT);
-    digitalWrite(pin_v,HIGH); 
+    pinMode(PIN_THUMB_MOD_JOYSTICK_V,OUTPUT);
+    digitalWrite(PIN_THUMB_MOD_JOYSTICK_V,HIGH); 
 } 
 
   
@@ -22,8 +22,8 @@ void Joystick::initialize(){
 void Joystick::read_joystick(){
 
     // read the analog joystick values
-    joystickValues[0] = analogRead(pin_jy); 
-    joystickValues[1] = analogRead(pin_jx);
+    joystickValues[0] = analogRead(PIN_THUMB_MOD_JOYSTICK_Y); 
+    joystickValues[1] = analogRead(PIN_THUMB_MOD_JOYSTICK_X);
 
     // check how many steps the joystick has
     if (layouts_manager.events_bank[layer_control.active_layer][32][0] == '0'){

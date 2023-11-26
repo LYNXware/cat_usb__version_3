@@ -5,11 +5,12 @@
 
 #include "events.h"
 #include "config.h"
+#include "PINs.h"
 
 
-#define encoder_GND 0 //a1
-#define encoder_pinA 45 //a2
-#define encoder_pinB 48 //a3
+// #define encoder_GND 0 //a1
+// #define encoder_pinA 45 //a2
+// #define encoder_pinB 48 //a3
 
 
 class Scroll_Wheel {

@@ -22,9 +22,9 @@ class Joystick {
     private:
 
         // declaring the joystick pins
-        #define pin_jx 18  
-        #define pin_jy 8
-        #define pin_v 3
+        // #define pin_jx 18  
+        // #define pin_jy 8
+        // #define pin_v 3
 
         // declaring the joystick values        
         int joystickValues[2];

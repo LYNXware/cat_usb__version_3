@@ -1,7 +1,7 @@
 #include "neopixel-LED.h"
 
 // creating led strip object
-Adafruit_NeoPixel strip_layer_switch(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_layer_switch(LED_COUNT, PIN_THUMB_MOD_LED_DATA, NEO_GRB + NEO_KHZ800);
 
 // creating an instance of the NeopixelLED class
 NeopixelLED neopixelled;
@@ -11,8 +11,8 @@ NeopixelLED neopixelled;
 void NeopixelLED::initialize(){
 
     // power suply for the led strip
-    pinMode(LED_power,OUTPUT);    
-    digitalWrite(LED_power,HIGH);
+    pinMode(PIN_THUMB_MOD_LED_V, OUTPUT);    
+    digitalWrite(PIN_THUMB_MOD_LED_V, HIGH);
 
     // initializing the led strip
     strip_layer_switch.begin();
