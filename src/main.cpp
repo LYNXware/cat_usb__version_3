@@ -66,6 +66,7 @@ void setup() {
   Keyboard.begin();
   Mouse.begin();
 
+
     // initialize the modules
   fingerModule.initialize();
   thumbModule.initialize();
@@ -74,6 +75,7 @@ void setup() {
   // setting up the cat variant for the communication with the LYNXapp
   config.set_variant();
   config.print_kayboard_scan_codes();
+
 
 
   neopixelled.initialize();

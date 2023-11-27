@@ -50,7 +50,7 @@ void Config::print_kayboard_scan_codes()
 {
     if (fingerModule.trigger_print_scan_codes() == true) {
 
-        for (int i = 0; i <= 194; i++) {
+        for (int i = 0; i <= 190; i++) {
             Keyboard.write('0' + (i / 1000 % 10)); // Write thousands place
             Keyboard.write('0' + (i / 100 % 10)); // Write hundreds place
             Keyboard.write('0' + (i / 10 % 10));  // Write tens place

@@ -39,8 +39,8 @@ public:
     // enum DeviceSide device_side = LEFT;
     enum DeviceSide device_side = RIGHT;
 
-    // enum ThumbModule thumb_module = JUST_KEYS;
-    enum ThumbModule thumb_module = KEYS_AND_JOYSTICK;
+    enum ThumbModule thumb_module = JUST_KEYS;
+    // enum ThumbModule thumb_module = KEYS_AND_JOYSTICK;
     // enum ThumbModule thumb_module = TRACKBALL;
 
     // enum FingerModule finger_module = ONLY_KEYS;

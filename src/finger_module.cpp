@@ -56,10 +56,14 @@ void Finger_Module::read_keystate()
     }
 }
 
+
+
+
 bool Finger_Module::trigger_print_scan_codes()
 {
     read_keystate();
-    if (f_state[0][1] == 1) 
+    // if (f_state[0][1] == 1 && f_state[0][2] == 1 && f_state[0][3] == 1)
+    if (f_state[0][1] == 1)
     {  return true; }
     else 
     {  return false; }
