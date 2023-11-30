@@ -4,7 +4,6 @@
 #include <Arduino.h>
 
 
-// new pins configuration
 #define PIN_FINGER_MOD_OUTPUT_1 1
 #define PIN_FINGER_MOD_OUTPUT_2 2
 #define PIN_FINGER_MOD_OUTPUT_3 42
