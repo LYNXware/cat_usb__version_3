@@ -1,5 +1,7 @@
 #include "scroll-wheel.h"
 
+Scroll_Wheel scroll_wheel;
+
 
 void Scroll_Wheel::initialize()
 {
@@ -22,30 +24,173 @@ void Scroll_Wheel::initialize()
 } 
 
 
+void Scroll_Wheel::read_encoder()
+{
+    state_a = digitalRead(encoder_a);
+    state_b = digitalRead(encoder_b);
 
-void Scroll_Wheel::read_encoder(){
+    // Clockwise
+    if (state_a != state_a_prev
+        && state_a == HIGH
+        && state_b == LOW)
+    {
+        event.actuate(EVENT_WF);
+        event.deactuate(EVENT_WF);
+    }
 
-    state = digitalRead(encoder_a);
-
-    if (state != previous_state) {
-        // Check if the rising edge of the encoder signal has occurred
-        if (state == HIGH) {
-            if (digitalRead(encoder_b) != state) {   
-                // Clockwise
-                event.actuate(EVENT_WF);
-                event.deactuate(EVENT_WF);
-                // delay(1);
-            } 
-            else {                                 
-                // Counterclockwise
-                event.actuate(EVENT_WB);
-                event.deactuate(EVENT_WB);
-                // delay(1);    
-            }
-        }
-    } 
-    previous_state = state;
+    // Counterclockwise
+    if (state_b != state_b_prev
+        && state_b == HIGH
+        && state_a == LOW)
+    {
+        event.actuate(EVENT_WB);
+        event.deactuate(EVENT_WB);
+    }
+    
+    state_a_prev = state_a;
+    state_b_prev = state_b;
 } 
 
 
-Scroll_Wheel scroll_wheel;
+// void Scroll_Wheel::read_encoder()
+// {
+//     state_a = digitalRead(encoder_a);
+//     state_b = digitalRead(encoder_b);
+
+//     if (state_a != state_a_prev)
+//     {
+//         if (state_a == HIGH) 
+//         {
+//             if (state_b == LOW)
+//             {
+//                 // Clockwise
+//                 event.actuate(EVENT_WF);
+//                 event.deactuate(EVENT_WF);
+//             } 
+//         }
+//     }
+//     if (state_b != state_b_prev)
+//     {
+//         if (state_b == HIGH) 
+//         {
+//             if (state_a == LOW)
+//             {
+//                 // Counterclockwise
+//                 event.actuate(EVENT_WB);
+//                 event.deactuate(EVENT_WB);
+//             } 
+//         }
+//     }
+//     state_a_prev = state_a;
+//     state_b_prev = state_b;
+// } 
+
+
+// void Scroll_Wheel::read_encoder(){
+
+//     state = digitalRead(encoder_a);
+
+//     if (state != previous_state) {
+//         // Check if the rising edge of the encoder signal has occurred
+//         if (state == HIGH) {
+//             if (digitalRead(encoder_b) != state) {   
+//                 // Clockwise
+//                 event.actuate(EVENT_WF);
+//                 event.deactuate(EVENT_WF);
+//             } 
+//             else {                                 
+//                 // Counterclockwise
+//                 event.actuate(EVENT_WB);
+//                 event.deactuate(EVENT_WB);
+//             }
+//         }
+//     } 
+//     previous_state = state;
+// } 
+
+
+
+
+
+
+
+// void Scroll_Wheel::read_encoder()
+// {
+//     state_a = digitalRead(encoder_a);
+//     state_b = digitalRead(encoder_b);
+
+//     if (state_a != state_a_prev)
+//     {
+//         if (state_a == HIGH) 
+//         {
+//             // if (state_b != state_a) 
+//             if (state_b == LOW)
+//             {
+//                 // Clockwise
+//                 event.actuate(EVENT_WF);
+//                 event.deactuate(EVENT_WF);
+//             } 
+//             else   
+//             {                           
+//                 // Counterclockwise
+//                 event.actuate(EVENT_WB);
+//                 event.deactuate(EVENT_WB);
+//             }
+//         }
+//     } 
+//     state_a_prev = state_a;
+//     state_b_prev = state_b;
+// } 
+
+
+
+
+// void Scroll_Wheel::read_encoder()
+// {
+//     aSet = digitalRead(encoder_a);
+//     bSet = digitalRead(encoder_b);
+
+//     if (aSet != aSetPrev || bSet != bSetPrev)
+//     {
+//         Serial.println("1");
+//         // delayMicroseconds(100); // Adjust the delay time as needed for your encoder
+        
+//         // if (!aSet && bSet)
+//         // {
+//         //     // Clockwise
+//         //     Serial.println("Clockwise");
+//         //     event.actuate(EVENT_WF);
+//         //     event.deactuate(EVENT_WF);
+//         // } 
+//         // else if (aSet && !bSet) 
+//         // {
+//         //     // Counterclockwise
+//         //     Serial.println("Counterclockwise");
+//         //     event.actuate(EVENT_WB);
+//         //     event.deactuate(EVENT_WB);
+//         // }
+//         aSet = digitalRead(encoder_a);
+//         bSet = digitalRead(encoder_b);
+
+//         if (aSet == aSetPrev && bSet == bSetPrev) 
+//         {
+//             Serial.println("2");
+//             if (!aSet && bSet)
+//             {
+//                 // Clockwise
+//                 event.actuate(EVENT_WF);
+//                 event.deactuate(EVENT_WF);
+//             } 
+//             else if (aSet && !bSet) 
+//             {
+//                 // Counterclockwise
+//                 event.actuate(EVENT_WB);
+//                 event.deactuate(EVENT_WB);
+//             }
+//         }
+//     }
+//     aSetPrev = aSet;
+//     bSetPrev = bSet;
+// }
+
+

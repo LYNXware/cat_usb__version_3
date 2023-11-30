@@ -20,6 +20,8 @@ public:
     void initialize();
     void read_encoder();
 
+
+
 private:
 
     uint8_t encoder_a;   
@@ -27,6 +29,23 @@ private:
 
     byte previous_state;  
     byte state;
+
+    bool state_a;
+    bool state_b;
+    bool state_a_prev;
+    bool state_b_prev;
+
+
+    // uint8_t aSet;
+    // uint8_t bSet;
+    // uint8_t aSetPrev = 0;
+    // uint8_t bSetPrev = 0;
+
+    bool aSet = false;
+    bool bSet = false;
+    bool aSetPrev = false;
+    bool bSetPrev = false;
+
 }; 
 
 extern Scroll_Wheel scroll_wheel;
