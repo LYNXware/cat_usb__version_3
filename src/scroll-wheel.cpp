@@ -46,7 +46,7 @@ void Scroll_Wheel::read_encoder()
         event.actuate(EVENT_WB);
         event.deactuate(EVENT_WB);
     }
-    
+
     state_a_prev = state_a;
     state_b_prev = state_b;
 } 
@@ -107,90 +107,5 @@ void Scroll_Wheel::read_encoder()
 //     } 
 //     previous_state = state;
 // } 
-
-
-
-
-
-
-
-// void Scroll_Wheel::read_encoder()
-// {
-//     state_a = digitalRead(encoder_a);
-//     state_b = digitalRead(encoder_b);
-
-//     if (state_a != state_a_prev)
-//     {
-//         if (state_a == HIGH) 
-//         {
-//             // if (state_b != state_a) 
-//             if (state_b == LOW)
-//             {
-//                 // Clockwise
-//                 event.actuate(EVENT_WF);
-//                 event.deactuate(EVENT_WF);
-//             } 
-//             else   
-//             {                           
-//                 // Counterclockwise
-//                 event.actuate(EVENT_WB);
-//                 event.deactuate(EVENT_WB);
-//             }
-//         }
-//     } 
-//     state_a_prev = state_a;
-//     state_b_prev = state_b;
-// } 
-
-
-
-
-// void Scroll_Wheel::read_encoder()
-// {
-//     aSet = digitalRead(encoder_a);
-//     bSet = digitalRead(encoder_b);
-
-//     if (aSet != aSetPrev || bSet != bSetPrev)
-//     {
-//         Serial.println("1");
-//         // delayMicroseconds(100); // Adjust the delay time as needed for your encoder
-        
-//         // if (!aSet && bSet)
-//         // {
-//         //     // Clockwise
-//         //     Serial.println("Clockwise");
-//         //     event.actuate(EVENT_WF);
-//         //     event.deactuate(EVENT_WF);
-//         // } 
-//         // else if (aSet && !bSet) 
-//         // {
-//         //     // Counterclockwise
-//         //     Serial.println("Counterclockwise");
-//         //     event.actuate(EVENT_WB);
-//         //     event.deactuate(EVENT_WB);
-//         // }
-//         aSet = digitalRead(encoder_a);
-//         bSet = digitalRead(encoder_b);
-
-//         if (aSet == aSetPrev && bSet == bSetPrev) 
-//         {
-//             Serial.println("2");
-//             if (!aSet && bSet)
-//             {
-//                 // Clockwise
-//                 event.actuate(EVENT_WF);
-//                 event.deactuate(EVENT_WF);
-//             } 
-//             else if (aSet && !bSet) 
-//             {
-//                 // Counterclockwise
-//                 event.actuate(EVENT_WB);
-//                 event.deactuate(EVENT_WB);
-//             }
-//         }
-//     }
-//     aSetPrev = aSet;
-//     bSetPrev = bSet;
-// }
 
 
