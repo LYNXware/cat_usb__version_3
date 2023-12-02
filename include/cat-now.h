@@ -12,29 +12,32 @@
 
 class CatNow {
 
-    public:
+public:
 
-        // turn on wifi and CatNow
-        void initialize();
+    void initialize();
 
-        void scan_for_slave();
+    // void scan_for_slave();
+    void scan_for_partner();
 
-        void send_switch_layer(uint8_t layer);
+    void send_switch_layer(uint8_t layer);
 
-    private:
+    void send_gyto_state(uint8_t state);
 
-        // wife credentials
-        #define CHANNEL 1
-        String wifi_name = "LYNX-"; // + cat_variant;
+private:
 
-        // slave mac address
-        esp_now_peer_info_t peerInfo;
-        // peer is available
-        bool peer_available = false;
+    // wife credentials
+    #define CHANNEL 1
+    String cat_wifi = "LYNX-"; // + cat_variant;
 
-        // esp-now callbacks
-        static void OnDataSent(const uint8_t* mac_addr, esp_now_send_status_t status);
-        static void OnDataReceived(const uint8_t* mac_addr, const uint8_t* data, int data_len); 
+    // mac address of the receiver/partner
+    int mac[6];
+    // peer = receiver/partner
+    esp_now_peer_info_t peerInfo;
+    bool peer_available = false;
+
+    // esp-now callbacks
+    static void OnDataSent(const uint8_t* mac_addr, esp_now_send_status_t status);
+    static void OnDataReceived(const uint8_t* mac_addr, const uint8_t* data, int data_len); 
 
 };
 

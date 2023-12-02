@@ -26,7 +26,7 @@ public:
     void switch_layer_back(char c);
 
 
-    void received_layer_switch(u8_t layer);
+    void received_layer_switch(uint8_t layer);
 
 
 private:

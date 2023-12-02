@@ -50,14 +50,22 @@ void Event::cat_actuate(String passingEvent)
         case CAT_LAYER_SWITCH:
             layer_control.switch_layer(passingEvent[2]);
             break;
+
         case CAT_GYRO:
-            // mpu6050.read();
-            mpu6050.trigger_state = true;
-            // Serial.print("CAT_GYRO: ");
+            if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050)
+            {
+                mpu6050.trigger_state = true;
+            }
+            else
+            {
+                catnow.send_gyto_state(1);
+            }
             break;
+
         case CAT_NONE:
             // Serial.println("act. CAT_NONE");
             break;
+
         default:   
             break;
     }
@@ -71,12 +79,22 @@ void Event::cat_deactuate(String passingEvent)
         case CAT_LAYER_SWITCH:
             layer_control.switch_layer_back(passingEvent[2]);
             break;
+
         case CAT_GYRO:
-            mpu6050.trigger_state = false;
+            if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050)
+            {
+                mpu6050.trigger_state = false;
+            }
+            else
+            {
+                catnow.send_gyto_state(0);
+            }
             break;
+
         case CAT_NONE:
             // Serial.println("deact. CAT_NONE");
             break;
+            
         default:   
             break;
     }

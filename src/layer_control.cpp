@@ -60,8 +60,10 @@ void Layer_Control::switch_layer_back(char c)
 
 
 // function to switch layer from the outside through the cat-now module (second device)
-void Layer_Control::received_layer_switch(u8_t layer)
-{
+void Layer_Control::received_layer_switch(uint8_t layer)
+{   
+    // Serial.print("received layer: ");
+    // Serial.println(layer);
     active_layer = layer;
     neopixelled.layer_witch(active_layer);
 }
