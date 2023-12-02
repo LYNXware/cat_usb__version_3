@@ -18,49 +18,97 @@ void MPU6050::initialize()
 
 void MPU6050::read()
 {  
-    mpu.getEvent(&accel, &gyro, &temp);
+    if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF] == "1"
+        || mpu6050.trigger_state == true)
+    {
+        mpu.getEvent(&accel, &gyro, &temp);
+        axis_val[0] = accel.acceleration.y;
+        axis_val[1] = accel.acceleration.x;
 
-    axis_val[0] = accel.acceleration.y;
-    axis_val[1] = accel.acceleration.x;
-
-    // Serial.print("nf:");
-    // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF]);
-
-    // Serial.print("  m:");
-    // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_M]);
-
-    // Serial.print("  ar:");
-    // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_AR]);
-
-    // Serial.print("   ");
-
-    if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_M] == "1")
-    {   
-        if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_AR] == "0")
-        {
-            absolute_event_trigger_with_mouse();
+        if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_M] == "1")
+        {   
+            if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_AR] == "0")
+            {
+                absolute_event_trigger_with_mouse();
+            }
+            else
+            {
+                relative_event_trigger_with_mouse();
+            }
         }
         else
         {
-            relative_event_trigger_with_mouse();
+            if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_AR] == "0")
+            {
+                absolute_event_trigger();
+            }
+            else
+            {
+                relative_event_trigger();
+            }
         }
-        // trigger_event_with_mouse();
-        // Serial.println("trigger_event_with_mouse");
     }
     else
     {
-        if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_AR] == "0")
+        for (uint8_t i = 0; i < 2; i++)
         {
-            absolute_event_trigger();
+            for (uint8_t j = 0; j < 2; j++)
+            {
+                if (gyro_state[i][j])
+                {
+                    deactuate_event(i,j);
+                }
+            }
+            
         }
-        else
-        {
-            relative_event_trigger();
-        }
-        // trigger_event();
-        // Serial.println("trigger_event");
     }
 }
+
+// void MPU6050::read()
+// {  
+//     mpu.getEvent(&accel, &gyro, &temp);
+
+//     axis_val[0] = accel.acceleration.y;
+//     axis_val[1] = accel.acceleration.x;
+
+//     // Serial.print("nf:");
+//     // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF]);
+
+//     // Serial.print("  m:");
+//     // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_M]);
+
+//     // Serial.print("  ar:");
+//     // Serial.print(layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_AR]);
+
+//     // Serial.print("   ");
+
+//     if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_M] == "1")
+//     {   
+//         if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_AR] == "0")
+//         {
+//             absolute_event_trigger_with_mouse();
+//         }
+//         else
+//         {
+//             relative_event_trigger_with_mouse();
+//         }
+//         // trigger_event_with_mouse();
+//         // Serial.println("trigger_event_with_mouse");
+//     }
+//     else
+//     {
+//         if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_AR] == "0")
+//         {
+//             absolute_event_trigger();
+//         }
+//         else
+//         {
+//             relative_event_trigger();
+//         }
+//         // trigger_event();
+//         // Serial.println("trigger_event");
+//     }
+// }
 
 
 

@@ -18,6 +18,7 @@ extern Adafruit_MPU6050 mpu;
 
 class MPU6050 {
 public:
+
     void initialize();
 
     void read();

@@ -114,10 +114,12 @@ void loop()
 
   // checking if the LYNXapp is sending new layouts
   usb_comms.get_layouts();
-  
+
+
   // checking if any event is triggered
   fingerModule.read_keystate();
   thumbModule.read_keystate();
+
 
   if (config.finger_module == KEYS_AND_WHEEL) {
     scroll_wheel.read_encoder();
@@ -125,14 +127,22 @@ void loop()
   if (config.thumb_module == KEYS_AND_JOYSTICK) {
     joystick.read_joystick();
   }
-    
+
+
+
   if (config.additional_modules == MOUSE_MODULE_ADNS_5050)
   {
     adns5050.read();
   } 
-  else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050
-  && (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF] == "1"
-  || mpu6050.trigger_state == true))
+
+
+  // else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050
+  // && (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF] == "1"
+  // || mpu6050.trigger_state == true))
+  // {
+  //   mpu6050.read();
+  // }
+  else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050)
   {
     mpu6050.read();
   }
