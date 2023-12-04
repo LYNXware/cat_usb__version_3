@@ -3,6 +3,7 @@
 Scroll_Wheel scroll_wheel;
 
 
+
 void Scroll_Wheel::initialize()
 {
     pinMode(PIN_FINGER_MOD_WHEEL_GND,OUTPUT);
@@ -20,7 +21,7 @@ void Scroll_Wheel::initialize()
     pinMode (encoder_a,INPUT_PULLUP);
     pinMode (encoder_b,INPUT_PULLUP);
     
-    previous_state = digitalRead(encoder_a);   
+    // previous_state = digitalRead(encoder_a);   
 } 
 
 
@@ -50,6 +51,8 @@ void Scroll_Wheel::read_encoder()
     state_a_prev = state_a;
     state_b_prev = state_b;
 } 
+
+
 
 
 // void Scroll_Wheel::read_encoder()

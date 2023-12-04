@@ -23,6 +23,7 @@ public:
 
     void send_gyto_state(uint8_t state);
 
+    
 private:
 
     // wife credentials
@@ -38,8 +39,8 @@ private:
     // esp-now callbacks
     static void OnDataSent(const uint8_t* mac_addr, esp_now_send_status_t status);
     static void OnDataReceived(const uint8_t* mac_addr, const uint8_t* data, int data_len); 
-
 };
+
 
 //instance of the class 
 extern CatNow catnow;

@@ -200,10 +200,10 @@ void MPU6050::deactuate_event(byte axis, byte side){
 
 void MPU6050::move_mouse(int8_t x, int8_t y)
 {
-    Serial.print("x1: ");
-    Serial.print(x);
-    Serial.print("  y1: ");
-    Serial.print(y);
+    // Serial.print("x1: ");
+    // Serial.print(x);
+    // Serial.print("  y1: ");
+    // Serial.print(y);
 
     y = y * layouts_manager.gyro_mouse_speed[layer_control.active_layer]
          * layouts_manager.gyro_mouse_y_direction[layer_control.active_layer];
@@ -213,23 +213,24 @@ void MPU6050::move_mouse(int8_t x, int8_t y)
 
     Mouse.move(x, y);
 
-    Serial.print("  x2: ");
-    Serial.print(x);
-    Serial.print("  y2: ");
-    Serial.print(y);
+    // Serial.print("  x2: ");
+    // Serial.print(x);
+    // Serial.print("  y2: ");
+    // Serial.print(y);
 
-    
+    // Serial.print("  xf: ");
+    // Serial.print(layouts_manager.gyro_mouse_x_direction[layer_control.active_layer]);
+    // Serial.print("  yf: ");
+    // Serial.print(layouts_manager.gyro_mouse_y_direction[layer_control.active_layer]);
+    // Serial.print("  s: ");
+    // Serial.print(layouts_manager.gyro_mouse_speed[layer_control.active_layer]);
 
-    Serial.print("  xf: ");
-    Serial.print(layouts_manager.gyro_mouse_x_direction[layer_control.active_layer]);
-    Serial.print("  yf: ");
-    Serial.print(layouts_manager.gyro_mouse_y_direction[layer_control.active_layer]);
-    Serial.print("  s: ");
-    Serial.print(layouts_manager.gyro_mouse_speed[layer_control.active_layer]);
-
-    Serial.println();
-    delay(100);
+    // Serial.println();
+    // delay(100);
 }
+
+
+
 
 
 

@@ -1,7 +1,6 @@
 #include "cat-now.h"
 
 
-//instance of the class
 CatNow catnow;
 
 
@@ -141,6 +140,8 @@ void CatNow::send_gyto_state(uint8_t state)
     // Send the data using ESP-NOW
     esp_now_send(peerInfo.peer_addr, data, sizeof(data));
 }
+
+
 
 
 

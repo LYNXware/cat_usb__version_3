@@ -15,15 +15,11 @@ public:
     void get_layouts();
 
 private:
-
-    // String incoming_raw_layouts = "empty";
     String comms_message = "are_you_a_cat";
-
 };
 
 
 extern USB_Comms usb_comms;
-
 #endif
 
 

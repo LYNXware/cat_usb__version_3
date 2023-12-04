@@ -8,8 +8,8 @@ NeopixelLED neopixelled;
 
 
 
-void NeopixelLED::initialize(){
-
+void NeopixelLED::initialize()
+{
     // power suply for the led strip
     pinMode(PIN_THUMB_MOD_LED_V, OUTPUT);    
     digitalWrite(PIN_THUMB_MOD_LED_V, HIGH);
@@ -17,15 +17,14 @@ void NeopixelLED::initialize(){
     // initializing the led strip
     strip_layer_switch.begin();
     strip_layer_switch.show(); 
-
 }
 
 
 
-void NeopixelLED::layer_witch(byte active_layer){
-
-    switch (active_layer){
-
+void NeopixelLED::layer_witch(byte active_layer)
+{
+    switch (active_layer)
+    {
         case 0:
             strip_layer_switch.setPixelColor(0, 0, 0, 50); //blue
             strip_layer_switch.setPixelColor(1, 0, 0, 0);
@@ -51,10 +50,4 @@ void NeopixelLED::layer_witch(byte active_layer){
             break;            
     }
 }
-
-
-
-
-
-
 

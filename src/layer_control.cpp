@@ -3,19 +3,20 @@
 Layer_Control layer_control;
 
 
-void Layer_Control::initialize(){
-    // set the layer to 0 on startup
+void Layer_Control::initialize()
+{
     active_layer = 0;
     neopixelled.layer_witch(active_layer);
 }
+
 
 
 void Layer_Control::switch_layer(char c)
 {
     press_start = millis();
 
-    if (c == CAT_MAJOR_MINOR){
-    
+    if (c == CAT_MAJOR_MINOR)
+    {
         if (active_layer == 0 || active_layer == 1){
             active_layer = 2;
         }  
@@ -23,8 +24,8 @@ void Layer_Control::switch_layer(char c)
             active_layer = 0; 
         }  
     }
-    else if(c == CAT_MAIN_SUB){
-    
+    else if(c == CAT_MAIN_SUB)
+    {
         if (active_layer == 0){
             active_layer = 1;
         }
@@ -38,12 +39,8 @@ void Layer_Control::switch_layer(char c)
             active_layer = 2;  
         }     
     }
-    else{
-    // do nothing
-    }
     catnow.send_switch_layer(active_layer);
     neopixelled.layer_witch(active_layer);
-    // delay(10);
 }
 
 

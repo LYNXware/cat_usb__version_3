@@ -11,16 +11,17 @@ void Layouts_Manager::split_events_package(String events_package)
     front_of_events = 0;
     package_length = events_package.length();
 
-    for (int i = 0; i < package_length; i++) {
-        if (events_package[i] == DELIMITER_LAYOUT){
+    for (int i = 0; i < package_length; i++)
+    {
+        if (events_package[i] == DELIMITER_LAYOUT)
+        {
             layer++;
             event_index = 0;
             front_of_events = i+1;
         }
-        if (events_package[i] == DELIMITER_EVENT){
-
+        if (events_package[i] == DELIMITER_EVENT)
+        {
             events_bank[layer][event_index] = events_package.substring(front_of_events,i);
-
             front_of_events = i+1;
             event_index++;  
         }   
@@ -56,7 +57,7 @@ void Layouts_Manager::convert_to_numbers()
     {
         mouse_factor[m][0] = pow((float(events_bank[m][EVENT_MH][0])/100), 2);  // horizontal mouse factor
         mouse_factor[m][1] = pow((float(events_bank[m][EVENT_MV][0])/100), 2);  // vertical mouse factor
-        // wheel_speed[m] = int(events_bank[m][EVENT_WS][0]);
+        
         wheel_speed[m] = atoi(events_bank[m][EVENT_WS].c_str());
 
         gyro_dead_zone[m] = atoi(events_bank[m][EVENT_GA_DZ].c_str());

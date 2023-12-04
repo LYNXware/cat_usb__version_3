@@ -20,11 +20,8 @@ class MPU6050 {
 public:
 
     void initialize();
-
     void read();
-
     bool trigger_state = false;
-
 
 private:
     sensors_event_t accel, gyro, temp;
@@ -59,9 +56,11 @@ private:
     void move_mouse(int8_t x, int8_t y);
 };
 
-extern MPU6050 mpu6050;
 
+extern MPU6050 mpu6050;
 #endif
+
+    
 
     
     // int8_t accel_x, accel_y, accel_z;
