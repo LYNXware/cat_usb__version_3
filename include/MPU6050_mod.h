@@ -53,15 +53,10 @@ private:
     void absolute();
     void relative();
 
-
-
     void actuate_event(uint8_t axis, uint8_t side);
     void deactuate_event(uint8_t axis, uint8_t side);
 
     void move_mouse(int8_t x, int8_t y);
-
-
-
 };
 
 extern MPU6050 mpu6050;

@@ -134,7 +134,10 @@ void loop()
   {
     adns5050.read();
   } 
-
+  else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050)
+  {
+    mpu6050.read();
+  }
 
   // else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050
   // && (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_NF] == "1"
@@ -142,8 +145,4 @@ void loop()
   // {
   //   mpu6050.read();
   // }
-  else if (config.additional_modules == GYROSCOPE_MODULE_MPU_6050)
-  {
-    mpu6050.read();
-  }
 }
