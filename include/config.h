@@ -37,8 +37,8 @@ public:
 
     /* CONFIG - here you can define your cat variant */ 
 
-    enum DeviceSide device_side = LEFT;
-    // enum DeviceSide device_side = RIGHT;
+    // enum DeviceSide device_side = LEFT;
+    enum DeviceSide device_side = RIGHT;
 
     enum ThumbModule thumb_module = JUST_KEYS;
     // enum ThumbModule thumb_module = KEYS_AND_JOYSTICK;

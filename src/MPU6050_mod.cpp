@@ -167,25 +167,23 @@ void MPU6050::relative()
 
 
 
-void MPU6050::actuate_event(byte axis, byte side){
-
+void MPU6050::actuate_event(byte axis, byte side)
+{
   if (!gyro_state[axis][side]) 
   {
     event.actuate(gyro_event_map[axis][side]);
     gyro_state[axis][side] = true;
-
     // Serial.print("press--");
     // Serial.print(axis);
     // Serial.print("-");
     // Serial.println(axis_event);
-
   }
 }
 
 
 
-void MPU6050::deactuate_event(byte axis, byte side){
-
+void MPU6050::deactuate_event(byte axis, byte side)
+{
   if (gyro_state[axis][side]) 
   {
     event.deactuate(gyro_event_map[axis][side]);
