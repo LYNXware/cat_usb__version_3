@@ -29,22 +29,30 @@ void MPU6050::read()
         {   
             if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_AR] == "0")
             {
-                absolute_event_trigger_with_mouse();
+                // absolute_event_trigger_with_mouse();
+                absolute();
+                move_mouse(axis_val[1], axis_val[0]);
             }
             else
             {
-                relative_event_trigger_with_mouse();
+                // relative_event_trigger_with_mouse();
+                // calc_relative_axis_val();
+                relative();
+                move_mouse(axis_val_relative[1], axis_val_relative[0]);
             }
         }
         else
         {
             if (layouts_manager.events_bank[layer_control.active_layer][EVENT_GA_AR] == "0")
             {
-                absolute_event_trigger();
+                // absolute_event_trigger();
+                absolute();
             }
             else
             {
-                relative_event_trigger();
+                // relative_event_trigger();
+                // calc_relative_axis_val();
+                relative();
             }
         }
     }
@@ -66,50 +74,15 @@ void MPU6050::read()
 
 
 
-void MPU6050::absolute_event_trigger()
-{ 
-    // Serial.println("absolute_event_trigger");
-    absolute();
-}
 
 
-void MPU6050::absolute_event_trigger_with_mouse()
-{
-    // Serial.println("absolute_event_trigger_with_mouse");
-    absolute();
-    move_mouse(axis_val[1], axis_val[0]);
-}
 
-
-void MPU6050::relative_event_trigger()
-{
-    // Serial.println("relative_event_trigger");
-    calc_relative_axis_val();
-    relative();
-}
-
-
-void MPU6050::relative_event_trigger_with_mouse()
-{   
-    // Serial.println("relative_event_trigger_with_mouse");
-    calc_relative_axis_val();
-    relative();
-    move_mouse(axis_val_relative[1], axis_val_relative[0]);
-}
-
-
-void MPU6050::calc_relative_axis_val()
-{
-    for (uint8_t i = 0; i < 2; i++)
-    {
-        axis_val_relative[i] = axis_val[i] - axis_val_prev[i];
-        axis_val_prev[i] = axis_val[i];
-    }
-}
 
 
 void MPU6050::absolute()
 {
+    treshold_absolute = layouts_manager.gyro_dead_zone[layer_control.active_layer];
+
     for (uint8_t i = 0; i < 2; i++)
     {   
         if (axis_val[i] > treshold_absolute)
@@ -135,8 +108,22 @@ void MPU6050::absolute()
 }
 
 
+
+void MPU6050::calc_relative_axis_val()
+{
+    for (uint8_t i = 0; i < 2; i++)
+    {
+        axis_val_relative[i] = axis_val[i] - axis_val_prev[i];
+        axis_val_prev[i] = axis_val[i];
+    }
+}
+
+
+
 void MPU6050::relative()
 {
+    calc_relative_axis_val();
+
     for (uint8_t i = 0; i < 2; i++)
     {
         // if (axis_val[i] > axis_val_prev[i] )
@@ -228,6 +215,42 @@ void MPU6050::move_mouse(int8_t x, int8_t y)
 }
 
 
+
+
+
+
+
+
+// void MPU6050::absolute_event_trigger()
+// { 
+//     // Serial.println("absolute_event_trigger");
+//     absolute();
+// }
+
+
+// void MPU6050::absolute_event_trigger_with_mouse()
+// {
+//     // Serial.println("absolute_event_trigger_with_mouse");
+//     absolute();
+//     move_mouse(axis_val[1], axis_val[0]);
+// }
+
+
+// void MPU6050::relative_event_trigger()
+// {
+//     // Serial.println("relative_event_trigger");
+//     calc_relative_axis_val();
+//     relative();
+// }
+
+
+// void MPU6050::relative_event_trigger_with_mouse()
+// {   
+//     // Serial.println("relative_event_trigger_with_mouse");
+//     calc_relative_axis_val();
+//     relative();
+//     move_mouse(axis_val_relative[1], axis_val_relative[0]);
+// }
 
 
 

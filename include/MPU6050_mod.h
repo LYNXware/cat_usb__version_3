@@ -30,8 +30,9 @@ private:
     int8_t axis_val_prev[2];
     int8_t axis_val_relative[2];
 
-    uint8_t treshold_absolute = 1;
-    uint8_t treshold_relative = 2;
+    uint8_t treshold_absolute;
+    uint8_t treshold;
+
 
     uint8_t gyro_event_map[2][2] = {{EVENT_GA_F, EVENT_GA_B}, 
                                     {EVENT_GA_R, EVENT_GA_L}};
@@ -40,10 +41,10 @@ private:
                             {false, false}};
 
 
-    void absolute_event_trigger();
-    void absolute_event_trigger_with_mouse();
-    void relative_event_trigger();
-    void relative_event_trigger_with_mouse();
+    // void absolute_event_trigger();
+    // void absolute_event_trigger_with_mouse();
+    // void relative_event_trigger();
+    // void relative_event_trigger_with_mouse();
 
     void calc_relative_axis_val();
 
