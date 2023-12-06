@@ -16,7 +16,6 @@ public:
 
     void initialize();
 
-    // void scan_for_slave();
     void scan_for_partner();
 
     void send_switch_layer(uint8_t layer);
