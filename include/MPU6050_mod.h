@@ -18,12 +18,10 @@ extern Adafruit_MPU6050 mpu;
 
 class MPU6050 {
 public:
+
     void initialize();
-
     void read();
-
     bool trigger_state = false;
-
 
 private:
     sensors_event_t accel, gyro, temp;
@@ -32,8 +30,9 @@ private:
     int8_t axis_val_prev[2];
     int8_t axis_val_relative[2];
 
-    uint8_t treshold_absolute = 1;
-    uint8_t treshold_relative = 2;
+    uint8_t treshold_absolute;
+    uint8_t treshold;
+
 
     uint8_t gyro_event_map[2][2] = {{EVENT_GA_F, EVENT_GA_B}, 
                                     {EVENT_GA_R, EVENT_GA_L}};
@@ -42,30 +41,27 @@ private:
                             {false, false}};
 
 
-    void absolute_event_trigger();
-    void absolute_event_trigger_with_mouse();
-    void relative_event_trigger();
-    void relative_event_trigger_with_mouse();
+    // void absolute_event_trigger();
+    // void absolute_event_trigger_with_mouse();
+    // void relative_event_trigger();
+    // void relative_event_trigger_with_mouse();
 
     void calc_relative_axis_val();
 
     void absolute();
     void relative();
 
-
-
     void actuate_event(uint8_t axis, uint8_t side);
     void deactuate_event(uint8_t axis, uint8_t side);
 
     void move_mouse(int8_t x, int8_t y);
-
-
-
 };
 
-extern MPU6050 mpu6050;
 
+extern MPU6050 mpu6050;
 #endif
+
+    
 
     
     // int8_t accel_x, accel_y, accel_z;

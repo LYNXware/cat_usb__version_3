@@ -14,17 +14,11 @@ class Thumb_Module {
 
 public:
 
-    // initialize the thumb module
     void initialize();
-
-    // read the state of the thumb module events
     void read_keystate();
 
 private:
-
-    //declaring inputs and outputs tor thumb buttons moudule
-    // const byte outPin[3] = {6, 5, 4};         
-    // const byte inPin[4] = {7, 15, 16, 17};    
+ 
     const byte outPin_count = 3;
     const byte inPin_count = 4;
 
@@ -53,9 +47,8 @@ private:
 
 };
 
-// creating an instance of the Thumb_Module class
-extern Thumb_Module thumbModule;
 
+extern Thumb_Module thumbModule;
 #endif
 
 

@@ -1,7 +1,10 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <Arduino.h>
+#include <Arduino.h>    
+
+#include "events.h"
+#include "finger_module.h"
 
 
 enum DeviceSide { 
@@ -34,19 +37,19 @@ public:
 
     /* CONFIG - here you can define your cat variant */ 
 
-    // enum DeviceSide device_side = LEFT;
-    enum DeviceSide device_side = RIGHT;
+    enum DeviceSide device_side = LEFT;
+    // enum DeviceSide device_side = RIGHT;
 
     enum ThumbModule thumb_module = JUST_KEYS;
     // enum ThumbModule thumb_module = KEYS_AND_JOYSTICK;
     // enum ThumbModule thumb_module = TRACKBALL;
 
-    // enum FingerModule finger_module = ONLY_KEYS;
-    enum FingerModule finger_module = KEYS_AND_WHEEL;
+    enum FingerModule finger_module = ONLY_KEYS;
+    // enum FingerModule finger_module = KEYS_AND_WHEEL;
 
-    enum AdditionalModules additional_modules = NONE;
+    // enum AdditionalModules additional_modules = NONE;
     // enum AdditionalModules additional_modules = MOUSE_MODULE_ADNS_5050;
-    // enum AdditionalModules additional_modules = GYROSCOPE_MODULE_MPU_6050;
+    enum AdditionalModules additional_modules = GYROSCOPE_MODULE_MPU_6050;
 
 
 
@@ -55,14 +58,30 @@ public:
 
     // the setup function is used to set the variant variable
     void set_variant();
-    
-private:
 
-
-
+    void print_kayboard_scan_codes(); 
 };
 
-// create an instance
-extern Config config;
 
+extern Config config;
 #endif
+
+
+
+
+// #define CAT_SIDE_LEFT
+// // #define CAT_SIDE_RIGHT
+
+// // #ifdef CAT_SIDE_LEFT
+// //     // String TTT = "left"; 
+// // #endif  
+
+// // #ifdef CAT_SIDE_RIGHT
+// //     #define SIDE "left"; 
+// // #endif  
+
+// #ifdef CAT_SIDE_LEFT
+//     #define SIDE "left";
+// #elif defined(CAT_SIDE_RIGHT)
+//     #define SIDE "right";
+// #endif  

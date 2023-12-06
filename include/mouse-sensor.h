@@ -10,16 +10,13 @@
 
 // code is taken form this forum: https://forum.arduino.cc/t/adns5050/67599/9
 
+
 class ADNS5050  {
 
 public:
 
-    // initialize the pins for the mouse sensor
     void initialize();
-
-    // read the mouse sensor
     void read();
-            
 
 private:
 
@@ -56,20 +53,13 @@ private:
     int y_mouse;
     int x_mouse;
 
-
     int  convert(byte twoscomp);
-
     void sync();
-
     void ADNS_write(unsigned char addr, unsigned char data);
-
     byte ADNS_read(unsigned char addr);
-
     void pixelGrab();
+};
 
-
-};//class end
 
 extern ADNS5050 adns5050;
-
 #endif

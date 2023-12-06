@@ -5,11 +5,8 @@
 
 #include "events.h"
 #include "config.h"
+#include "PINs.h"
 
-
-#define encoder_GND 0 //a1
-#define encoder_pinA 45 //a2
-#define encoder_pinB 48 //a3
 
 
 class Scroll_Wheel {
@@ -19,15 +16,26 @@ public:
     void initialize();
     void read_encoder();
 
+
 private:
 
     uint8_t encoder_a;   
     uint8_t encoder_b;    
 
-    byte previous_state;  
-    byte state;
+    // byte previous_state;  
+    // byte state;
+
+    bool state_a;
+    bool state_b;
+    bool state_a_prev;
+    bool state_b_prev;
+
+    // bool aSet = false;
+    // bool bSet = false;
+    // bool aSetPrev = false;
+    // bool bSetPrev = false;
 }; 
 
-extern Scroll_Wheel scroll_wheel;
 
+extern Scroll_Wheel scroll_wheel;
 #endif

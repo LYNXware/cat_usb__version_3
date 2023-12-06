@@ -12,11 +12,9 @@ class Finger_Module {
 
 public:
 
-    // initializing the finger module
     void initialize();
-
-    // read the state of the finger module events
     void read_keystate();
+    bool trigger_print_scan_codes();
 
 private:
 
@@ -54,10 +52,12 @@ private:
 };
 
 
-// creating an instance of the Finger_Module class
 extern Finger_Module fingerModule;
-
 #endif
+
+
+
+
 
     // declaring inputs and outputs for finger buttons moudule
     //                         // u1  u2  u3  u4  u5  u6

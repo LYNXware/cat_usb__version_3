@@ -25,8 +25,6 @@ void ADNS5050::initialize() {
 
 void ADNS5050::read()
 {
-    // Serial.print("AL: ");
-
     if (layouts_manager.events_bank[layer_control.active_layer][EVENT_M_NF] == "1")
     {
         y_sensor = convert(ADNS_read(DELTA_Y_REG));
@@ -37,36 +35,12 @@ void ADNS5050::read()
 
         Mouse.move(y_mouse, x_mouse);
     }
-
-    //digitalWrite(RESET, LOW);
-    //delay(50);
-
-    // y_sensor = convert(ADNS_read(DELTA_Y_REG));
-    // x_sensor = convert(ADNS_read(DELTA_X_REG));
-
-//  Serial.print("hs ");
-//  Serial.print(y_sensor);
-    
-//  Serial.print("    vs ");
-//  Serial.println(x_sensor);
-    
-    // y_mouse = y_sensor * layouts_manager.mouse_factor[layer_control.active_layer][0] * (-1); // Y horizontal 
-    // x_mouse = x_sensor * layouts_manager.mouse_factor[layer_control.active_layer][1]; // X vertical
-
-    // Mouse.move(y_mouse, x_mouse);
-
-    
-//  Serial.print("h ");
-//  Serial.print(y_mouse);
-    
-//  Serial.print("    v ");
-//  Serial.println(x_mouse);
-    
 }
+
+
         
-        
-        
-int  ADNS5050::convert(byte twoscomp){
+int  ADNS5050::convert(byte twoscomp)
+{
     int value;
 
     twoscomp = twoscomp << 1;

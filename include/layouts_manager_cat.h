@@ -16,8 +16,6 @@ class Layouts_Manager {
 
 public:
 
-    // String layouts_package = "***";
-
     String events_bank[4][EVENTS_COUNT];
     
     // mouse_factor[layer][mouse_horizontal / mouse_vertical / wheel_speed]
@@ -53,5 +51,4 @@ private:
 
 
 extern Layouts_Manager layouts_manager;
-
 #endif
