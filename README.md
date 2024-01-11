@@ -12,7 +12,7 @@ The complete project documentation is at: https://www.lynxware.org/
 
 
 ## Circuit
-![Alt Text](readme/circuit.webp)
+![Alt Text](readme/circuit.png)
 
 
 
