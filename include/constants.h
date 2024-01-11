@@ -7,8 +7,11 @@
 const char LEFT_CAT = 0x0c;
 const char RIGHT_CAT = 0x0b;
 
-const char DELIMITER_EVENT = 0x01;
-const char DELIMITER_LAYOUT = 0x02;
+const char DELIMITER_EVENT = 0xff; // b'\xff\xff'
+const char DELIMITER_LAYOUT = 0xfe; // b'\xfe\xfe'
+
+// const char DELIMITER_EVENT = 0x01;
+// const char DELIMITER_LAYOUT = 0x02;
 
 
 const char MOUSE_FUNCTION = 0x10;

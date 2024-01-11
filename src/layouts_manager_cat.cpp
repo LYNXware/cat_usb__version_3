@@ -12,18 +12,33 @@ void Layouts_Manager::split_events_package(String events_package)
     package_length = events_package.length();
 
     for (int i = 0; i < package_length; i++)
-    {
-        if (events_package[i] == DELIMITER_LAYOUT)
+    {   
+        if (events_package[i] == DELIMITER_LAYOUT && events_package[i+1] == DELIMITER_LAYOUT)
         {
             layer++;
             event_index = 0;
             front_of_events = i+1;
+
+            // Serial.print(" DELIMITER_LAYOUT ");
         }
-        if (events_package[i] == DELIMITER_EVENT)
+
+        if (events_package[i] == DELIMITER_EVENT && events_package[i+1] == DELIMITER_EVENT)
         {
             events_bank[layer][event_index] = events_package.substring(front_of_events,i);
-            front_of_events = i+1;
-            event_index++;  
+
+            // Serial.println();
+            // Serial.print("i: ");
+            // Serial.print(i);
+            // Serial.print("   l: ");
+            // Serial.print(layer); 
+            // Serial.print("   ei: ");
+            // Serial.print(event_index); 
+            // Serial.print("   E: ");
+            // Serial.print( events_bank[layer][event_index]); 
+            // Serial.println();
+
+            front_of_events = i+2;
+            event_index++; 
         }   
     }
     convert_to_numbers();
