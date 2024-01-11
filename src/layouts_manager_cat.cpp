@@ -17,7 +17,7 @@ void Layouts_Manager::split_events_package(String events_package)
         {
             layer++;
             event_index = 0;
-            front_of_events = i+1;
+            front_of_events = i+2;
 
             // Serial.print(" DELIMITER_LAYOUT ");
         }
@@ -26,7 +26,6 @@ void Layouts_Manager::split_events_package(String events_package)
         {
             events_bank[layer][event_index] = events_package.substring(front_of_events,i);
 
-            // Serial.println();
             // Serial.print("i: ");
             // Serial.print(i);
             // Serial.print("   l: ");
