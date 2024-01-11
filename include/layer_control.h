@@ -17,6 +17,7 @@ public:
     void initialize();
 
     void switch_layer(char c);
+    
     // switch back to the previous layer 
     // if the key is pressed longer than min_hold_time
     void switch_layer_back(char c);

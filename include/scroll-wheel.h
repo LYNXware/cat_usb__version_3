@@ -22,18 +22,11 @@ private:
     uint8_t encoder_a;   
     uint8_t encoder_b;    
 
-    // byte previous_state;  
-    // byte state;
-
     bool state_a;
     bool state_b;
     bool state_a_prev;
     bool state_b_prev;
-
-    // bool aSet = false;
-    // bool bSet = false;
-    // bool aSetPrev = false;
-    // bool bSetPrev = false;
+    
 }; 
 
 
