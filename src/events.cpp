@@ -27,8 +27,8 @@ void Event::actuate(byte event)
     }      
     else{
         keyboard_press(passing_event);
-        delay(2);
-    }  
+    }
+    delay(1);  
 }
 
 
@@ -46,7 +46,8 @@ void Event::deactuate(byte event)
     }    
     else{
         keyboard_release(passing_event);
-    } 
+    }
+    delay(1);
 }
 
 
