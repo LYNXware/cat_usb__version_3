@@ -107,22 +107,17 @@ void CatNow::OnDataReceived(const uint8_t* mac_addr, const uint8_t* data, int da
 
 void CatNow::send_switch_layer(uint8_t layer)
 {
-    if (peer_available == false) 
+    if (peer_available == false && peer_checked == false) 
     {
         scan_for_partner();
-        // scan_for_slave();
+        peer_checked = true;
     }
 
-    uint8_t data[] = {'c', 'l', layer};
-
-    // Serial.print(data[0]);
-    // Serial.print(" ");
-    // Serial.print(data[1]);
-    // Serial.print(" ");
-    // Serial.println(data[2]);
-
-    // Send the data using ESP-NOW
-    esp_now_send(peerInfo.peer_addr, data, sizeof(data));
+    if (peer_available == true) 
+    {
+        uint8_t data[] = {'c', 'l', layer};
+        esp_now_send(peerInfo.peer_addr, data, sizeof(data));
+    }
 }
 
 

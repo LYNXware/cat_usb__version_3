@@ -11,7 +11,7 @@
 class USB_Comms {
 
 public:
-    String incoming_raw_layouts = "empty";
+    String incoming_raw_layouts;
     void get_layouts();
 
 private:
