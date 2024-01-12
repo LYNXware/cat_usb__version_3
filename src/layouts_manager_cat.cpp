@@ -13,19 +13,19 @@ void Layouts_Manager::split_events_package(String events_package)
 
     for (int i = 0; i < package_length; i++)
     {   
-        if (events_package[i] == DELIMITER_LAYOUT && events_package[i+1] == DELIMITER_LAYOUT)
+        // if (events_package[i] == DELIMITER_LAYOUT && events_package[i+1] == DELIMITER_LAYOUT)
+        if (events_package[i] == DELIMITER_LAYOUT)
         {
             layer++;
             event_index = 0;
-            front_of_events = i+2;
-
-            // Serial.print(" DELIMITER_LAYOUT ");
+            front_of_events = i+1;
         }
 
-        if (events_package[i] == DELIMITER_EVENT && events_package[i+1] == DELIMITER_EVENT)
+        // if (events_package[i] == DELIMITER_EVENT && events_package[i+1] == DELIMITER_EVENT)
+        if (events_package[i] == DELIMITER_EVENT)
         {
+            events_bank[layer][event_index] = "";
             events_bank[layer][event_index] = events_package.substring(front_of_events,i);
-            delay(1); // wait for the serial buffer to fill up (weird bug)
 
             // Serial.print("i: ");
             // Serial.print(i);
@@ -37,7 +37,7 @@ void Layouts_Manager::split_events_package(String events_package)
             // Serial.print( events_bank[layer][event_index]); 
             // Serial.println();
 
-            front_of_events = i+2;
+            front_of_events = i+1;
             event_index++; 
         }   
     }

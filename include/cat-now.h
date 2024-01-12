@@ -33,7 +33,10 @@ private:
     int mac[6];
     // peer = receiver/partner
     esp_now_peer_info_t peerInfo;
+
+    bool peer_checked = false;
     bool peer_available = false;
+
 
     // esp-now callbacks
     static void OnDataSent(const uint8_t* mac_addr, esp_now_send_status_t status);
