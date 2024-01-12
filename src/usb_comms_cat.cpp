@@ -8,6 +8,7 @@ void USB_Comms::get_layouts()
     if (Serial.available())
     {
         incoming_raw_layouts = Serial.readString();
+        delay(10); // wait for the serial buffer to fill up (weird bug)
 
         if (incoming_raw_layouts == comms_message)
         {
