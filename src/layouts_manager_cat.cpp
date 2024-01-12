@@ -25,6 +25,7 @@ void Layouts_Manager::split_events_package(String events_package)
         if (events_package[i] == DELIMITER_EVENT && events_package[i+1] == DELIMITER_EVENT)
         {
             events_bank[layer][event_index] = events_package.substring(front_of_events,i);
+            delay(1); // wait for the serial buffer to fill up (weird bug)
 
             // Serial.print("i: ");
             // Serial.print(i);
