@@ -44,8 +44,8 @@ public:
     enum ThumbModule thumb_module = KEYS_AND_JOYSTICK;
     // enum ThumbModule thumb_module = TRACKBALL;
 
-    enum FingerModule finger_module = ONLY_KEYS;
-    // enum FingerModule finger_module = KEYS_AND_WHEEL;
+    // enum FingerModule finger_module = ONLY_KEYS;
+    enum FingerModule finger_module = KEYS_AND_WHEEL;
 
     enum AdditionalModules additional_modules = NONE;
     // enum AdditionalModules additional_modules = MOUSE_MODULE_ADNS_5050;
