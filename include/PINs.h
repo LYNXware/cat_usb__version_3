@@ -38,6 +38,18 @@
 #define PIN_THUMB_MOD_JOYSTICK_X 10
 
 
+//version 2
+// #define PIN_THUMB_MOD_OUTPUT_1 4
+// #define PIN_THUMB_MOD_OUTPUT_2 5
+// #define PIN_THUMB_MOD_OUTPUT_3 6
+
+// #define PIN_THUMB_MOD_INPUT_1 7
+// #define PIN_THUMB_MOD_INPUT_2 15
+// #define PIN_THUMB_MOD_INPUT_3 16
+// #define PIN_THUMB_MOD_INPUT_4 17
+
+
+
 
 
 // old pins configuration
@@ -72,8 +84,5 @@
 // #define PIN_THUMB_MOD_JOYSTICK_Y 7
 
 // #define PIN_BATTERY_VOLTAGE 14
-
-
-
 
 #endif
