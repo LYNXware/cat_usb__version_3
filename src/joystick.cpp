@@ -25,6 +25,12 @@ void Joystick::read_joystick(){
     joystickValues[0] = analogRead(PIN_THUMB_MOD_JOYSTICK_Y); 
     joystickValues[1] = analogRead(PIN_THUMB_MOD_JOYSTICK_X);
 
+    Serial.print("y ");
+    Serial.print(joystickValues[0]);
+    Serial.print("   x");
+    Serial.println(joystickValues[1]);
+    
+
     // check how many steps the joystick has
     if (layouts_manager.events_bank[layer_control.active_layer][32][0] == '0'){
         one_step();
