@@ -10,7 +10,7 @@ Remark:
 
 
 #include <Arduino.h>
-
+// #include <USBHID.h>
 
 // module to define the cat variant
 #include "config.h"
@@ -54,18 +54,32 @@ Remark:
 
 
 
-//test button
-// #define pI 46
-// int bRead;
+// test button
+#define pI 46
+int bRead;
 
+int i1;
+int i2;
+String t1 = "-t1-";
+String t2 = "-t2-";
+
+bool s1 = false;
+bool s2 = false;
+
+
+bool testAwake;
+bool isSystemAwake();
 
 void setup()
 {
-    //test buton
-    // pinMode(pI, INPUT_PULLUP);
+    // test buton
+    pinMode(pI, INPUT_PULLUP);
 
 
     // Activation of required libraries
+
+    // USBHID.begin();
+
     Serial.begin(115200);
     Keyboard.begin();
     Mouse.begin();
@@ -108,10 +122,10 @@ void setup()
 
 void loop()
 {
-  // bRead = digitalRead(pI);
-  // if (bRead == 0) {
-  //   Serial.println("button pressed");
-  // }
+  bRead = digitalRead(pI);
+  if (bRead == 0) {
+    Serial.println("button pressed");
+  }
 
 
   // checking if the LYNXapp is sending new layouts
@@ -140,4 +154,73 @@ void loop()
   {
     mpu6050.read();
   }
+
+
+  testAwake = isSystemAwake();
+  // Serial.println("---");
+  
+}
+
+
+bool isSystemAwake() {
+  // Check if there's USB activity indicating the system is awake
+  // For simplicity, you might check if there's any USB communication happening
+  // return USBHID.available();
+
+  i1 = Keyboard.availableForWrite();
+  i2 = Keyboard.getWriteError();
+
+
+
+  if (i1 =! 0)
+  {
+    t1 = "11";
+  }
+  else if (i1 == 0)
+  {
+    t1 = "00";
+    s1 = true;
+  }
+
+
+  if (i2 == 0){
+    t2 = "00";
+  }
+  else if (i2 =! 0){
+    t2 = "11";
+    s2 = true;
+  }
+
+
+  Serial.print("i1 ");
+  Serial.print(i1);
+  Serial.print("    i2 ");
+  Serial.print(i2);
+
+  Serial.print("       t1 ");
+  Serial.print(t1);
+  Serial.print("   t2 ");
+  Serial.print(t2);
+
+
+  Serial.print("       s1 ");
+  Serial.print(s1);
+  Serial.print("   s2 ");
+  Serial.print(s2);
+
+
+
+
+  Serial.println();
+  return true;
+  
+}
+
+void handleSystemWakeUp() {
+  // Reinitialize USB devices after PC wake-up
+  Keyboard.end();
+  Mouse.end();
+  delay(1000); // Add a delay to ensure USB devices properly reset
+  Keyboard.begin();
+  Mouse.begin();
 }
