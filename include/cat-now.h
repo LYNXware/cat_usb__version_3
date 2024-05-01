@@ -20,6 +20,8 @@ public:
 
     void send_switch_layer(uint8_t layer);
 
+    void send_layer_latch();
+
     void send_gyto_state(uint8_t state);
 
     

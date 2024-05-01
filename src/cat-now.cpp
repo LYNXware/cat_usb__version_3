@@ -91,6 +91,11 @@ void CatNow::OnDataReceived(const uint8_t* mac_addr, const uint8_t* data, int da
         layer_control.received_layer_switch(dynamicValue);
     }
 
+    else if (data[0] == 'c' && data[1] == 'r')
+    {
+        layer_control.set_latch();
+    }
+
     else if (data[0] == 'c' && data[1] == 'g')
     {
         if (data[2] == 1)
@@ -120,7 +125,20 @@ void CatNow::send_switch_layer(uint8_t layer)
     }
 }
 
+void CatNow::send_layer_latch()
+{
+    if (peer_available == false && peer_checked == false)
+    {
+        scan_for_partner();
+        peer_checked = true;
+    }
 
+    if (peer_available == true)
+    {
+        uint8_t data[] = {'c', 'r'};
+        esp_now_send(peerInfo.peer_addr, data, sizeof(data));
+    }
+}
 
 void CatNow::send_gyto_state(uint8_t state)
 {
