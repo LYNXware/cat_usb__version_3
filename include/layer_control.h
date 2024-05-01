@@ -24,6 +24,8 @@ public:
 
     void received_layer_switch(uint8_t layer);
 
+    void set_latch();
+
 private:
     // variables for switch_layer_back function
     unsigned long press_start;

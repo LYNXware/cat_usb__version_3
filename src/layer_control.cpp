@@ -64,3 +64,8 @@ void Layer_Control::received_layer_switch(uint8_t layer)
     active_layer = layer;
     neopixelled.layer_witch(active_layer);
 }
+
+void Layer_Control::set_latch()
+{
+    press_start += min_hold_time;
+}

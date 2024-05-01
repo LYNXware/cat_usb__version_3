@@ -27,7 +27,9 @@ void Event::actuate(byte event)
     }      
     else{
         keyboard_press(passing_event);
-    }  
+        layer_control.set_latch();
+        catnow.send_layer_latch();
+    }
     delay(1);
 }
 
