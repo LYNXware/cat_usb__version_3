@@ -59,6 +59,7 @@ void Thumb_Module::read_keystate()
             {
                 event.actuate(t_index);
                 t_state[ti][to] = 1;
+                delay(debounceDelay);
                 // Serial.print("a.: ");
                 // Serial.println(t_index);
             }

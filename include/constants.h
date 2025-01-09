@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
+const unsigned long debounceDelay = 20; // milliseconds
+
 
 const char LEFT_CAT = 0x0c;
 const char RIGHT_CAT = 0x0b;

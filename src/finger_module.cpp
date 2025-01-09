@@ -33,6 +33,7 @@ void Finger_Module::read_keystate()
             {                
                 event.actuate(f_index); 
                 f_state[fi][fo] = 1;
+                delay(debounceDelay);
                 // Serial.print("ac.: ");
                 // Serial.println(f_index);   
             }
